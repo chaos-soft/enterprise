@@ -2,95 +2,91 @@
 
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_5_10;
+    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    gnome3.gnome-tweaks
-    gnome3.dconf-editor
-    gthumb
-    gparted
-    firefox
-    tilix
-    pavucontrol
-    redshift
-    atom
-    git
-    mpv
-    xdotool
-    sequeler
-    python3
-    docker-compose
-    # Uplay не работает со steam-run-native.
-    steam-run
-    gitg
-    hdparm
-  ];
-
-  fonts.fontconfig = {
-    subpixel.rgba = "none";
-    defaultFonts = {
-      sansSerif = [ "Helvetica Neue" ];
-      monospace = [ "Menlo" ];
+  environment = {
+    systemPackages = with pkgs; [
+      atom
+      corectrl
+      docker-compose
+      firefox
+      git
+      gitg
+      gnome3.gnome-tweaks
+      gparted
+      gthumb
+      mc
+      mpv
+      pavucontrol
+      python3
+      qt5ct
+      xdotool
+    ];
+    variables = {
+      DXVK_ASYNC = "1";
+      # DXVK_HUD = "version,frametimes,fps,pipelines";
+      DXVK_LOG_LEVEL = "none";
+      DXVK_STATE_CACHE_PATH = "/mnt/larka/games/caches";
+      MANGOHUD = "1";
+      # Для proton-ge-custom.
+      PROTON_USE_D9VK = "1";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+      VKD3D_DEBUG = "none";
     };
   };
 
   fileSystems = {
-    "/mnt/games" = {
-      device = "/dev/disk/by-label/games";
-      fsType = "ext4";
-    };
     "/mnt/larka" = {
       device = "/dev/disk/by-label/larka";
       fsType = "ext4";
     };
   };
 
-  hardware = {
-    opengl = {
-      driSupport32Bit = true;
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+  fonts.fontconfig = {
+    defaultFonts = {
+      monospace = [ "Menlo" ];
+      sansSerif = [ ".Lucida Grande UI" "Helvetica Neue" ];
     };
-    pulseaudio.support32Bit = true;
+    subpixel.rgba = "none";
   };
 
   networking = {
-    hostName = "enterprise";
-    useDHCP = false;
+    defaultGateway = "172.18.22.1";
     enableIPv6 = false;
     firewall.allowPing = false;
-    interfaces.enp99s0.ipv4.addresses = [
+    hostName = "enterprise";
+    interfaces.enp9s0.ipv4.addresses = [
       { address = "172.18.22.133"; prefixLength = 24; }
     ];
-    defaultGateway = "172.18.22.1";
-    nameservers = [ "77.88.8.8" "77.88.8.1" ];
+    nameservers = [ "208.67.222.222" "208.67.220.220" ];
+    useDHCP = false;
   };
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.steam.enable = true;
+
   services = {
-    xserver = {
-      enable = true;
-      desktopManager.gnome3.enable = true;
-      windowManager.i3.enable = true;
-      videoDrivers = [ "nvidia" ];
-      inputClassSections = [ ''
-        Identifier "Marble Mouse"
-        MatchProduct "Logitech USB Trackball"
-        Driver "evdev"
-        Option "ButtonMapping" "3 2 1 4 5 6 7 8 9"
-        Option "EmulateWheel" "true"
-        Option "EmulateWheelButton" "9"
-      '' ];
+    fstrim.enable = true;
+    gnome3 = {
+      tracker.enable = false;
+      tracker-miners.enable = false;
     };
-    flatpak.enable = true;
+    netdata.enable = true;
+    xserver = {
+      desktopManager.gnome3.enable = true;
+      displayManager.gdm.enable = true;
+      enable = true;
+    };
   };
 
   time.timeZone = "Europe/Moscow";
 
   users.users.chaos = {
+    extraGroups = [ "docker" "wheel" ];
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
   };
 
   virtualisation.docker.enable = true;

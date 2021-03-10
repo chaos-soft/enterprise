@@ -2,16 +2,16 @@
 bbe724acef5f9fcfd85a38c4e35e2f00  ./common.rpf
 7ea872c2f9803cfb4223098b85e70cc0  ./d3dcompiler_46.dll
 8355e491fa90ca00045be22bb556b213  ./d3dcsx_46.dll
-d043c98ed424f6770ea800e77efcf561  ./GFSDK_ShadowLib.win64.dll
+f2c348c5aaff0c420f4dce3abc1bbad6  ./GFSDK_ShadowLib.win64.dll
 ea04393624856f44854cace25b50ce3c  ./GFSDK_TXAA_AlphaResolve.win64.dll
 167385d13443035ff68643b2c0c59a4d  ./GFSDK_TXAA.win64.dll
 121044fe4ae47114dfccd15e399df399  ./GPUPerfAPIDX11-x64.dll
-0e94c30eb7c2c7bd2de968b4148f9493  ./GTA5.exe
-2b73d684042fe4f1f5c86484a8be9cd3  ./GTAVLanguageSelect.exe
-2b73d684042fe4f1f5c86484a8be9cd3  ./GTAVLauncher.exe
-83eab1057bb1d1730f8e1e39c653eec7  ./index.bin
+a43ffb840fd6e631bb080d1c6d8ca346  ./GTA5.exe
+1c5e4f113a5d54af5fae9626dfb670be  ./GTAVLanguageSelect.exe
+1c5e4f113a5d54af5fae9626dfb670be  ./GTAVLauncher.exe
+dcbdeeffa56236f9f76c42cbc09bd992  ./index.bin
 2041025c15e6ff893dcbb5ed63fdb2f8  ./NvPmApi.Core.win64.dll
-2b73d684042fe4f1f5c86484a8be9cd3  ./PlayGTAV.exe
+1c5e4f113a5d54af5fae9626dfb670be  ./PlayGTAV.exe
 4010ef6614fdc496da75a7e929bf4005  ./ReadMe/Chinese/ReadMe.txt
 88a21c06f7c90e65168400008ec3ddbb  ./ReadMe/Chinese(Simplified)/ReadMe.txt
 7cdf1c798136c3981bb746b5fc86878b  ./ReadMe/English/ReadMe.txt
@@ -183,7 +183,7 @@ b296431a5dfff596fef2f04b4f36362a  ./Redistributables/DirectX/Oct2005_xinput_x86.
 265e3d8e5635179004742aa3af2e05cf  ./Redistributables/DirectX/OCT2006_XACT_x64.cab
 09ad0f82d92213b7d7eaa9e3b2268fe5  ./Redistributables/DirectX/OCT2006_XACT_x86.cab
 5689d43c3b201dd3810fa3bba4a6476a  ./Redistributables/VCRed/vcredist_x86.exe
-bcb08f93cc51d2c6cceb09d1756982c6  ./update/update.rpf
+c6d0991f5f422ebf612b0c86557c18b7  ./update/update.rpf
 f6753a682c98031b1cb88d785f973c0c  ./update/x64/data/errorcodes/american.txt
 c47a1baaa87fceceb70685e0933cfc10  ./update/x64/data/errorcodes/chinesesimp.txt
 0eb62efac780c25cb3ee123c573aa2fb  ./update/x64/data/errorcodes/chinese.txt
@@ -222,6 +222,7 @@ cbd02bff9d631941cb1be25323f577b9  ./update/x64/dlcpacks/mppatchesng/dlc.rpf
 de3154bbc19fa8e4d4f7c5ad8310cffd  ./update/x64/dlcpacks/mpsmuggler/dlc.rpf
 924ba24cda50276419fd98a1e3d6b327  ./update/x64/dlcpacks/mpspecialraces/dlc.rpf
 f44f2933345872808786bff1300386ee  ./update/x64/dlcpacks/mpstunt/dlc.rpf
+1c42546106918d35b52a6892b7463834  ./update/x64/dlcpacks/mpsum/dlc.rpf
 572fbe80370d4c4e1afa3becbe6b2615  ./update/x64/dlcpacks/mpvalentines2/dlc.rpf
 4d77ea5bc38646e76592be9518d73cf1  ./update/x64/dlcpacks/mpvinewood/dlc.rpf
 0ca85b971ccae96b1342cdf62d0ef644  ./update/x64/dlcpacks/mpxmas_604490/dlc.rpf
@@ -239,6 +240,7 @@ e0300b04dfae8d26335f8555ff817e71  ./update/x64/dlcpacks/patchday1ng/dlc.rpf
 0e78879d7aa35c04a036e34d3eeda996  ./update/x64/dlcpacks/patchday20ng/dlc.rpf
 9d5ce68b38a3d4f4a1f7e91efcdf1ccf  ./update/x64/dlcpacks/patchday21ng/dlc.rpf
 7c0f47eedc53f70c1e7d64294b62e5f2  ./update/x64/dlcpacks/patchday22ng/dlc.rpf
+5a6f27e602b0a6153c7b5cfb6b8cd9f9  ./update/x64/dlcpacks/patchday23ng/dlc.rpf
 944683e32536c908611a2f9bc2e0111c  ./update/x64/dlcpacks/patchday2bng/dlc.rpf
 f48d5113ed030b737d84b323bfc7dc18  ./update/x64/dlcpacks/patchday2ng/dlc.rpf
 8a53726d7a79d0dcb9019d1e479c2b8e  ./update/x64/dlcpacks/patchday3ng/dlc.rpf

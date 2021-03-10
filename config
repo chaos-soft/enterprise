@@ -187,4 +187,3 @@ exec --no-startup-id pavucontrol
 exec --no-startup-id tilix
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
-exec --no-startup-id nvidia-settings --load-config-only && redshift -O 4000
