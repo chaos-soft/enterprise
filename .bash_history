@@ -1,49 +1,34 @@
-xrandr --output HDMI-3 --set "Broadcast RGB" "Full"
-apm update
-xinput --list
-xinput --list-props 12
-sudo cp -rp /etc/nixos/enterprise.nix ~/Documents/
-grep -r '[[:blank:]]$' .
-grep -r $'\t' .
-grep -r '  ' .
-find . -type f -exec md5sum {} + | sort -k 2
-sudo nixos-rebuild boot --upgrade
-sudo nix-collect-garbage -d
-flatpak update
-gsettings set org.gnome.desktop.peripherals.keyboard delay 250
-gsettings get org.gnome.desktop.input-sources xkb-options
-gsettings set org.gnome.desktop.input-sources xkb-options "['terminate:ctrl_alt_bksp,grp_led:scroll']"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub com.valvesoftware.Steam
-sudo flatpak override --filesystem=/mnt/games com.valvesoftware.Steam
-cd '/mnt/games/games/steam/steamapps/common/Proton 5.0/dist/bin'
-WINEPREFIX='/mnt/games/games/wine/gta 5/pfx/' steam-run ./wine winecfg
-ln -s /home/chaos/Documents/linux/.bash_history .bash_history
-ls -la
-docker-compose exec velvet mysqldump -u root -proot velvet > velvet.sql
-cat ~/Documents/python/xxx.csv | docker exec -i vv_velvet_1 python manage.py import
-docker inspect miranda_python_1
-docker attach vv_velvet_1
-docker build -t velvet:20200302 .
+grep -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '  ' .
+grep -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:alnum:]]  [[:alnum:]]' .
+grep -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:blank:]]$' .
+grep -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\r' .
+grep -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\t' .
+sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
+gsettings get org.gnome.shell app-picker-layout
+identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
+find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 > ~/Documents/hzd
+find . -type f -printf "mv '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
+find . -type f -printf "mv '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
+find . \! -group users -o \! -user chaos
+sudo find . -depth -name '.DS_Store' -print -delete
+sudo find . -type d -empty -print -delete
+diff -qr --exclude=.git --exclude=mariadb vv vv.tmp
+curl -X POST -d 'client_id=&client_secret=&grant_type=client_credentials' https://id.twitch.tv/oauth2/token
+sudo mkdir games && sudo chown -R chaos:users games
+dconf dump / > ~/Documents/enterprise/dconf
+sudo nginx
+git push --all --dry-run origin
+docker exec -it vv_velvet_1 bash
+docker images && docker network ls && docker ps -a
+docker-compose exec velvet coverage report -m
+docker-compose exec velvet coverage run --source='.' manage.py test blog bookmarks
+docker-compose exec velvet python manage.py createsuperuser
+docker-compose exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
+docker-compose exec velvet python manage.py loaddata store/bookmarks.json
 docker-compose restart velvet
 docker-compose up
-docker-compose stop
-docker rmi b5d878aba9ab
-docker images
-docker ps -a
-docker network ls
-docker-compose rm -f
-journalctl -b CONTAINER_NAME=miranda_python_1 --all
-python3 -m venv ~/Documents/python/vv/venv/
-~/Documents/python/vv/venv/bin/pip install --no-cache-dir --upgrade -r requirements.txt
-cat ~/Documents/python/xxx.sql | python3 mysqldump_to_csv.py > ~/Documents/python/xxx.csv
-sudo find . -depth -name '.DS_Store' -print -delete
-xinput --set-prop 12 'Device Accel Profile' 2
-xinput --set-prop 12 'Device Accel Constant Deceleration' 2.2
+cd ~/Documents/python/miranda/
+cd ~/Documents/python/velvet/
+cd ~/Documents/stream && sh audio.sh
+sudo shutdown -h +60
 sudo shutdown -c
-sudo shutdown -h +90
-MANGOHUD=1 flatpak run com.valvesoftware.Steam
-cd '/mnt/games/games/steam/steamapps/common/Proton 5.0'
-sh '/home/chaos/Documents/linux/gta 5.sh'
-sudo cpupower frequency-set -g performance
-sudo cpupower frequency-set -g powersave
