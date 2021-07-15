@@ -30,5 +30,13 @@
   "linter-js-standard":
     lintHtmlFiles: true
     lintMarkdownFiles: true
+  "linter-mypy":
+    disallowAnyExplicit: false
+    disallowAnyExpr: false
+    executablePath: "/home/chaos/Documents/python/flake8/bin/python"
+    mypyIncremental: false
+    warnMissingImports: false
+  minimap:
+    displayPluginsControls: false
   welcome:
     showOnStartup: false

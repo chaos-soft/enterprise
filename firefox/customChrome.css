@@ -1,0 +1,30 @@
+:root {
+	--gnome-tabbar-tab-active-color: black;
+	--gnome-tabbar-tab-color: black;
+	--gnome-tabbar-tab-hover-color: black;
+	--gnome-toolbar-color: black;
+	--gnome-toolbar-icon-fill: black;
+}
+
+menulist,
+.autocomplete-richlistitem[type="loginsFooter"],
+.button.connect-device,
+.dialog-button-box button,
+.dialog-button,
+.findbar-container toolbarbutton.findbar-button,
+.notification-button,
+.panel-footer button,
+.protections-popup-footer-button,
+.subviewbutton.panel-subview-footer,
+.tracking-protection-button,
+#appMenu-fxa-status2:not([fxastatus="signedin"]) #appMenu-fxa-label2,
+#appMenu-popup .panel-banner-item,
+#appMenu-popup #appMenu-zoomReset-button2:not(#hack),
+#downloadsHistory,
+#item-choose button,
+#overflowMenu-customize-button,
+#PanelUI-panic-view-button,
+#protections-popup-trackers-blocked-counter-box,
+#tracking-protection-preferences-button:not(#hack) {
+	text-align: start !important;
+}
