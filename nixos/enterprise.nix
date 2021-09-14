@@ -1,30 +1,23 @@
 { config, pkgs, ... }:
 
 let
-  # pkgsU = import "/home/chaos/Downloads/nixpkgs" {};
+  pkgsU = import "/home/chaos/Downloads/nixpkgs" {};
 in {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+    kernelPackages = pkgs.linuxPackages_5_13;
+    kernelParams = [ "nvidia-drm.modeset=1" ];
   };
 
   environment = {
     systemPackages = with pkgs; [
       (nginx.override { modules = [ pkgs.nginxModules.rtmp ]; })
-      # mousai
-      # pkgsU.obs-studio
-      # pkgsU.obs-vkcapture
-      # v4l-utils
       atom
       carla
       certbot
-      corectrl
-      cpuset
       docker-compose
       ffmpeg
       firefox
       firejail
-      geeqie
       git
       gitg
       gnome.gnome-tweak-tool
@@ -36,39 +29,44 @@ in {
       mpv
       nix-prefetch-github
       nmap
+      nordic
+      obs-studio
+      obs-studio-plugins.obs-nvfbc
       p7zip
       pavucontrol
+      pkgsU.qdre
       python39
       qjackctl
       qt5ct
+      ranger
+      shotcut
       skype
       tilix
       transmission-gtk
       vkBasalt
+      vulkan-tools
       xdotool
       youtube-dl
     ];
     variables = {
-      # DXVK_HUD = "version,frametimes,fps,pipelines";
+      # DXVK_HUD = "full";
       DXVK_ASYNC = "1";
       DXVK_LOG_LEVEL = "none";
-      DXVK_STATE_CACHE_PATH = "/mnt/polina/games/caches";
-      GTK_THEME = "Adwaita:light";
+      ENABLE_VKBASALT = "1";
+      GTK_THEME = "Nordic-bluish-accent";
       MANGOHUD = "1";
-      mesa_glthread = "true";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
+      MANGOHUD_CONFIGFILE = "/home/chaos/Documents/enterprise/MangoHud.conf";
+      VKBASALT_CONFIG_FILE = "/home/chaos/Documents/enterprise/vkBasalt.conf";
       VKD3D_DEBUG = "none";
     };
   };
 
   fileSystems = {
-    "/mnt/alisa" = {
-      device = "/dev/disk/by-label/alisa";
-      fsType = "ext4";
-    };
+    "/".options = [ "defaults" "noatime" ];
     "/mnt/polina" = {
       device = "/dev/disk/by-label/polina";
       fsType = "ext4";
+      options = [ "defaults" "noatime" ];
     };
   };
 
@@ -96,17 +94,14 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.steam.enable = true;
-
-  security = {
-    wrappers = {
-      ffmpeg = {
-        capabilities = "cap_sys_admin+ep";
-        source = "${pkgs.ffmpeg}/bin/ffmpeg";
-      };
-      firejail.source = "${pkgs.firejail}/bin/firejail";
-    };
+  programs = {
+    qt5ct.enable = true;
+    steam.enable = true;
   };
+
+  qt5.enable = false;
+
+  security.wrappers.firejail.source = "${pkgs.firejail}/bin/firejail";
 
   services = {
     fstrim.enable = true;
@@ -118,17 +113,11 @@ in {
       alsa.enable = false;
       jackd.enable = true;
     };
-    netdata.enable = true;
     xserver = {
       desktopManager.gnome.enable = true;
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "chaos";
-        };
-        gdm.enable = true;
-      };
       enable = true;
+      videoDrivers = [ "nvidia" ];
+      windowManager.i3.enable = true;
     };
   };
 

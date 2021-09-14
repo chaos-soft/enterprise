@@ -7,9 +7,9 @@ xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch']
 
 [org/gnome/desktop/interface]
 clock-show-weekday=true
-document-font-name='.Lucida Grande UI Medium 10.19921875'
-font-name='.Lucida Grande UI Medium 10.19921875'
-monospace-font-name='Menlo 10'
+document-font-name='Sans 10.19921875'
+font-name='Sans 10.19921875'
+monospace-font-name='Monospace 10'
 
 [org/gnome/desktop/media-handling]
 autorun-never=true
@@ -18,7 +18,7 @@ autorun-never=true
 show-banners=false
 
 [org/gnome/desktop/peripherals/keyboard]
-delay=uint32 250
+delay=uint32 300
 
 [org/gnome/desktop/privacy]
 disable-camera=true
@@ -43,7 +43,7 @@ switch-group=['<Primary>grave']
 switch-group-backward=['<Primary><Shift>grave']
 
 [org/gnome/desktop/wm/preferences]
-titlebar-font='.Lucida Grande UI Medium 10.19921875'
+titlebar-font='Sans 10.19921875'
 
 [org/gnome/gnome-system-monitor]
 current-tab='processes'
@@ -78,7 +78,7 @@ maximized=true
 reuse-active-window=true
 scroll-action='zoom'
 single-click-activation=false
-sort-type='file::name'
+sort-type='file::mtime'
 thumbnail-caption='standard::display-name,gth::file::display-size,general::dimensions'
 thumbnail-list-visible=false
 thumbnail-size=256
@@ -97,6 +97,7 @@ zoom-change='keep-prev'
 [org/gnome/mutter]
 attach-modal-dialogs=false
 center-new-windows=true
+dynamic-workspaces=true
 
 [org/gnome/nautilus/icon-view]
 default-zoom-level='standard'
@@ -121,7 +122,7 @@ volume-up=['F12']
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
 binding='<Primary>0'
-command="sh -c 'sleep 0.1 && xdotool key --delay 100 m Down Down Return Down Return Up Up Up Return Escape Escape Escape'"
+command="sh -c 'sleep 0.1 && xdotool key --delay 100 m Down Down Return Down Down Down Return Up Up Up Return Escape Escape Escape'"
 name='c0'
 
 [org/gnome/settings-daemon/plugins/power]
@@ -134,19 +135,21 @@ hinting='slight'
 
 [org/gnome/shell]
 command-history=['r']
-disable-user-extensions=true
+disable-user-extensions=false
+enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=@as []
 
-[org/gnome/shell/keybindings]
-toggle-application-view=['F4']
-toggle-overview=['F3']
+[org/gnome/shell/extensions/user-theme]
+name='xxx'
 
 [org/gnome/system/location]
 enabled=false
 
 [org/gtk/settings/file-chooser]
 date-format='with-time'
+show-hidden=true
 show-type-column=false
+sort-directories-first=true
 
 [system/locale]
 region='ru_RU.UTF-8'

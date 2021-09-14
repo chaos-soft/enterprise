@@ -30,7 +30,7 @@ OBS_PLUGINS_PATH=/run/current-system/sw/lib/obs-plugins OBS_PLUGINS_DATA_PATH=/r
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
 sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
 sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R chaos:users .Trash-1000
-sudo mkdir games tmp && sudo chown -R chaos:users games tmp
+sudo mkdir -p games tmp && sudo chown -R chaos:users games tmp
 sudo netstat -tulpn
 WINEPREFIX='/mnt/polina/games/gta 5/pfx' steam-run ./wine winecfg
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
@@ -67,11 +67,13 @@ docker-compose up
 cd ~/Documents/enterprise/stream && sh audio.sh
 nginx -c ~/Documents/enterprise/stream/nginx.conf
 nginx -c ~/Documents/enterprise/stream/nginx.conf -s stop
-sh '/home/chaos/Documents/enterprise/stream/ffmpeg vaapi.sh'
-cd '/mnt/alisa/games/steam/steamapps/common/Proton 5.13' && sh '/home/chaos/Documents/enterprise/games/far cry 3.sh'
-cd '/mnt/alisa/games/steam/steamapps/common/Proton 5.13' && sh '/home/chaos/Documents/enterprise/games/far cry 5.sh'
-cd '/mnt/alisa/games/steam/steamapps/common/Proton 6.3' && sh '/home/chaos/Documents/enterprise/games/gta 5.sh'
+cd '/mnt/polina/games/steam/steamapps/common/Proton 5.13' && sh '/home/chaos/Documents/enterprise/games/far cry 3.sh'
+cd '/mnt/polina/games/steam/steamapps/common/Proton 6.3' && sh '/home/chaos/Documents/enterprise/games/gta 5.sh'
 curl cheat.sh/python/list
 firejail --net=none --noprofile atom
+qdre-compositor
+ranger
+sudo mount /nix/store/ -o remount,rw
+sudo nvidia-smi -pm 1 && sudo nvidia-smi -pl 100
 sudo shutdown -c
 sudo shutdown -h +60
