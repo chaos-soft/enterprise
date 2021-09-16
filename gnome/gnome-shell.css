@@ -1,0 +1,18 @@
+@import url(resource:///org/gnome/theme/gnome-shell.css);
+
+.popup-menu-icon,
+#panel .panel-button .system-status-icon {
+  icon-size: 16px;
+}
+
+stage {
+  font-size: 10.2pt;
+}
+
+#panel {
+  height: 28px;
+}
+
+.panel-corner {
+   -panel-corner-radius: 0;
+}
