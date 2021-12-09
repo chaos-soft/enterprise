@@ -1,11 +1,34 @@
-atom-text-editor .invisible-character {
-  color: red;
+:root {
+  --size: 14px;
 }
 
+atom-text-editor,
+.syntax--source.syntax--css .syntax--property-name,
 .syntax--source.syntax--css .syntax--property-name.syntax--support,
-.syntax--source.syntax--css .syntax--property-value.syntax--support,
-.syntax--text {
+.syntax--source.syntax--css .syntax--property-value,
+.syntax--source.syntax--css .syntax--property-value.syntax--support {
   color: rgba(255, 255, 255, .8);
+}
+
+atom-text-editor {
+  background-color: rgba(0, 0, 0, .07);
+}
+
+  atom-text-editor .invisible-character {
+    color: red;
+  }
+
+.scrollbar-corner {
+  display: none;
+}
+
+.scrollbars-visible-always ::-webkit-scrollbar {
+  height: var(--size);
+  width: var(--size);
+}
+
+.scrollbars-visible-always ::-webkit-scrollbar-thumb {
+  border-radius: var(--size);
 }
 
 .vertical-scrollbar {

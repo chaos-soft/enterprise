@@ -4,7 +4,7 @@ let
   pkgsU = import "/home/chaos/Downloads/nixpkgs" {};
 in {
   boot = {
-    kernelPackages = pkgs.linuxPackages_5_13;
+    kernelPackages = pkgs.linuxKernel.packages.linux_5_14;
     kernelParams = [ "nvidia-drm.modeset=1" ];
   };
 
@@ -39,7 +39,6 @@ in {
       qjackctl
       qt5ct
       ranger
-      shotcut
       skype
       tilix
       transmission-gtk
@@ -94,14 +93,15 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
+  powerManagement.enable = false;
+
   programs = {
+    firejail.enable = true;
     qt5ct.enable = true;
     steam.enable = true;
   };
 
   qt5.enable = false;
-
-  security.wrappers.firejail.source = "${pkgs.firejail}/bin/firejail";
 
   services = {
     fstrim.enable = true;

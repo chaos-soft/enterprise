@@ -1,5 +1,5 @@
 [org/gnome/desktop/background]
-picture-uri='file:///home/chaos/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg'
+picture-uri='file:///home/chaos/Pictures/Screenshot from 2021-04-20 01-58-49.png'
 
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'us'), ('xkb', 'ru')]
@@ -115,15 +115,10 @@ show-image-thumbnails='never'
 initial-size=(960, 1006)
 
 [org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+mic-mute=['<Primary>F10']
 volume-down=['F11']
 volume-mute=['F10']
 volume-up=['F12']
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
-binding='<Primary>0'
-command="sh -c 'sleep 0.1 && xdotool key --delay 100 m Down Down Return Down Down Down Return Up Up Up Return Escape Escape Escape'"
-name='c0'
 
 [org/gnome/settings-daemon/plugins/power]
 power-button-action='interactive'

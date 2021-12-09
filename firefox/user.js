@@ -1,4 +1,3 @@
-// user_pref("browser.tabs.drawInTitlebar", false);
 user_pref("app.shield.optoutstudies.enabled", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.contentblocking.category", "strict");
@@ -9,8 +8,8 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", fa
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.search.hiddenOneOffs", "Yandex,Amazon.com,Bing,DuckDuckGo,Google,Wikipedia (en)");
+user_pref("browser.startup.homepage", "about:blank");
 user_pref("browser.tabs.loadInBackground", false);
-user_pref("browser.uidensity", 0);
 user_pref("browser.urlbar.shortcuts.bookmarks", false);
 user_pref("browser.urlbar.shortcuts.history", false);
 user_pref("browser.urlbar.shortcuts.tabs", false);
@@ -25,6 +24,9 @@ user_pref("layout.spellcheckDefault", 0);
 user_pref("media.autoplay.default", 5);
 user_pref("media.hardwaremediakeys.enabled", false);
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
+user_pref("network.trr.custom_uri", "https://doh.libredns.gr/ads");
+user_pref("network.trr.mode", 2);
+user_pref("network.trr.uri", "https://doh.libredns.gr/ads");
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.desktop-notification", 2);
 user_pref("permissions.default.geo", 2);

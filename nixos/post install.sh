@@ -1,7 +1,7 @@
 apm install \
     auto-detect-indentation \
     duplicate-removal \
-    intentions@2.0.0 \
+    intentions \
     linter-flake8 \
     linter-js-standard \
     linter-mypy \
