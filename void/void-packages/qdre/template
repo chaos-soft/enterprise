@@ -1,0 +1,14 @@
+# Template file for 'qdre'
+pkgname=qdre
+version=7e3b8f03
+revision=1
+build_style=cmake
+hostmakedepends="pkg-config"
+makedepends="gnome-menus-devel
+ kcrash-devel
+ xcb-util-renderutil-devel
+ xcb-util-wm-devel"
+short_desc="Qt Desktop Regular Environment (early development)"
+maintainer="chaos-soft <mail@57st.net>"
+license="MIT"
+homepage="https://gitlab.com/zaps166/qdre"

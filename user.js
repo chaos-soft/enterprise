@@ -20,6 +20,7 @@ user_pref("datareporting.healthreport.uploadEnabled", false);
 user_pref("devtools.cache.disabled", true);
 user_pref("findbar.highlightAll", true);
 user_pref("intl.accept_languages", "ru,en-us,en");
+user_pref("layout.css.prefers-color-scheme.content-override", 1);
 user_pref("layout.spellcheckDefault", 0);
 user_pref("media.autoplay.default", 5);
 user_pref("media.hardwaremediakeys.enabled", false);

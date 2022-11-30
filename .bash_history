@@ -5,16 +5,18 @@ grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '  '
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:alnum:]]  [[:alnum:]]' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:blank:]]$' .
 grep --color -rI --text 'HDR+' .
+
 find . -newermt '2017-12-01 00:00:00' ! -newermt '2019-05-01 00:00:00'
 find . -type d -print0 | xargs -0 chmod 0755
 find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 > ~/Documents/hzd
 find . -type f -print0 | xargs -0 chmod 0644
-find . -type f -printf "mv '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
-find . -type f -printf "mv '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
+find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
+find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
 find . -type f | egrep --color '[а-яА-Я]+'
 find . \! -user $USER -o \! -group $USER
 sudo find . -depth -name '.DS_Store' -print -delete
 sudo find . -type d -empty -print -delete
+
 GIT_ASKPASS= git push --all --dry-run origin
 GTK_DEBUG=interactive gnome-clocks
 WINEPREFIX='/mnt/polina/games/gta 5/pfx' ./wine winecfg
@@ -32,23 +34,32 @@ sudo mkdir -p games tmp && sudo chown -R $USER:$USER games tmp
 sudo netstat -tulpn
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
 youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oSr3a6JLHUs
+
+./xbps-src -a i686 pkg obs-vkcapture32
+./xbps-src binary-bootstrap
+./xbps-src pkg obs-vkcapture
+git clone --depth=1 https://github.com/void-linux/void-packages.git
+sudo xbps-install --repository=hostdir/binpkgs obs-vkcapture
+sudo xbps-install --repository=hostdir/binpkgs/multilib/ obs-vkcapture32-32bit
+
 cd ~/Documents/python/miranda/ && docker-compose up
 cd ~/Documents/python/velvet/ && docker-compose -f dc.nginx.yml up
 cd ~/Documents/python/velvet/ && docker-compose up
 docker exec -it vv_velvet_1 bash
-docker images && docker network ls && docker ps -a
+docker images && docker network ls && docker ps -a && docker volume list
 docker-compose -f dc.nginx.yml up
 docker-compose exec -T db mysql -uroot -proot penny < sql
 docker-compose exec velvet coverage report -m
 docker-compose exec velvet coverage run --source='.' manage.py test blog bookmarks
+docker-compose exec velvet python manage.py dumpdata --indent 4 -o backup.json && sudo chown -R $USER:$USER backup.json
 docker-compose exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-docker-compose exec velvet python manage.py generatehtml
+docker-compose exec velvet python manage.py generatehtml && sudo chown -R $USER:$USER store/html/
 docker-compose exec velvet python manage.py loaddata store/bookmarks.json
 docker-compose restart velvet
 docker-compose up
+
 curl cheat.sh/python/list
 nginx -c ~/Documents/enterprise/stream/nginx.conf
 nginx -c ~/Documents/enterprise/stream/nginx.conf -s stop
 sudo shutdown -h +60
-~/Documents/enterprise/gta\ 5.sh
-~/Documents/enterprise/stream/audio.sh
+taskset -ac 4-15 ~/Documents/enterprise/gta\ 5.sh

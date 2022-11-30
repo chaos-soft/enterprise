@@ -1,69 +1,62 @@
 { config, pkgs, ... }:
 
-let
-  pkgsU = import "/home/chaos/Downloads/nixpkgs" {};
-in {
+{
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_5_14;
-    kernelParams = [ "nvidia-drm.modeset=1" ];
+    kernelPackages = pkgs.linuxKernel.packages.linux_5_19;
+    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "mitigations=off" ];
   };
 
   environment = {
     systemPackages = with pkgs; [
-      (nginx.override { modules = [ pkgs.nginxModules.rtmp ]; })
-      atom
+      calf
       carla
       certbot
-      docker-compose
+      corectrl
+      curl
+      docker-compose_2
       ffmpeg
       firefox
-      firejail
       git
       gitg
-      gnome.gnome-tweak-tool
+      gnome.gnome-tweaks
       gparted
       gthumb
+      libsForQt5.kate
+      libsForQt5.kompare
+      libsForQt5.konsole
       lsp-plugins
       mangohud
       mc
       mpv
-      nix-prefetch-github
+      nano
       nmap
-      nordic
       obs-studio
-      obs-studio-plugins.obs-nvfbc
-      p7zip
       pavucontrol
-      pkgsU.qdre
-      python39
-      qjackctl
-      qt5ct
+      python311
       ranger
-      skype
-      tilix
       transmission-gtk
+      unrar
       vkBasalt
       vulkan-tools
       xdotool
+      xorg.xmodmap
       youtube-dl
     ];
     variables = {
-      # DXVK_HUD = "full";
       DXVK_ASYNC = "1";
       DXVK_LOG_LEVEL = "none";
       ENABLE_VKBASALT = "1";
-      GTK_THEME = "Nordic-bluish-accent";
       MANGOHUD = "1";
-      MANGOHUD_CONFIGFILE = "/home/chaos/Documents/enterprise/MangoHud.conf";
-      VKBASALT_CONFIG_FILE = "/home/chaos/Documents/enterprise/vkBasalt.conf";
+      MANGOHUD_CONFIGFILE = "/home/chaos/tmp/mh";
+      VKBASALT_CONFIG_FILE = "/home/chaos/tmp/vkBasalt.conf";
       VKD3D_DEBUG = "none";
     };
   };
 
   fileSystems = {
     "/".options = [ "defaults" "noatime" ];
-    "/mnt/polina" = {
-      device = "/dev/disk/by-label/polina";
+    "/mnt/larka" = {
+      device = "/dev/disk/by-label/larka";
       fsType = "ext4";
       options = [ "defaults" "noatime" ];
     };
@@ -77,16 +70,12 @@ in {
     subpixel.rgba = "none";
   };
 
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.pulseaudio.enable = false;
 
   networking = {
-    defaultGateway = "172.18.22.1";
     enableIPv6 = false;
     firewall.allowPing = false;
     hostName = "enterprise";
-    interfaces.enp4s0.ipv4.addresses = [
-      { address = "172.18.22.133"; prefixLength = 24; }
-    ];
     nameservers = [ "208.67.222.222" "208.67.220.220" ];
     useDHCP = false;
   };
@@ -96,7 +85,6 @@ in {
   powerManagement.enable = false;
 
   programs = {
-    firejail.enable = true;
     qt5ct.enable = true;
     steam.enable = true;
   };
@@ -109,22 +97,20 @@ in {
       tracker-miners.enable = false;
       tracker.enable = false;
     };
-    jack = {
-      alsa.enable = false;
-      jackd.enable = true;
-    };
+    pipewire.enable = true;
+    pipewire.jack.enable = true;
+    pipewire.pulse.enable = true;
     xserver = {
       desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
       enable = true;
-      videoDrivers = [ "nvidia" ];
-      windowManager.i3.enable = true;
     };
   };
 
   time.timeZone = "Europe/Moscow";
 
   users.users.chaos = {
-    extraGroups = [ "docker" "jackaudio" "wheel" ];
+    extraGroups = [ "docker" "wheel" ];
     isNormalUser = true;
   };
 

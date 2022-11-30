@@ -12,7 +12,3 @@ stage {
 #panel {
   height: 28px;
 }
-
-.panel-corner {
-   -panel-corner-radius: 0;
-}

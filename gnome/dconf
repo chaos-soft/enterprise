@@ -1,13 +1,15 @@
 [org/gnome/desktop/background]
-picture-uri='file:///home/chaos/Pictures/Screenshot from 2021-04-20 01-58-49.png'
+picture-uri='file:///home/chaos/Pictures/Screenshots/Screenshot from 2021-04-20 01-58-49.png'
 
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'us'), ('xkb', 'ru')]
-xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch']
+xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch', 'grp:caps_toggle']
 
 [org/gnome/desktop/interface]
 clock-show-weekday=true
 document-font-name='Sans 10.19921875'
+font-antialiasing='grayscale'
+font-hinting='slight'
 font-name='Sans 10.19921875'
 monospace-font-name='Monospace 10'
 
@@ -34,6 +36,9 @@ disable-external=true
 
 [org/gnome/desktop/session]
 idle-delay=uint32 0
+
+[org/gnome/desktop/sound]
+allow-volume-above-100-percent=true
 
 [org/gnome/desktop/wm/keybindings]
 close=['<Primary>q']
@@ -124,10 +129,6 @@ volume-up=['F12']
 power-button-action='interactive'
 sleep-inactive-ac-type='nothing'
 
-[org/gnome/settings-daemon/plugins/xsettings]
-antialiasing='grayscale'
-hinting='slight'
-
 [org/gnome/shell]
 command-history=['r']
 disable-user-extensions=false
@@ -136,6 +137,10 @@ favorite-apps=@as []
 
 [org/gnome/shell/extensions/user-theme]
 name='xxx'
+
+[org/gnome/shell/keybindings]
+screenshot=['Print']
+show-screenshot-ui=@as []
 
 [org/gnome/system/location]
 enabled=false

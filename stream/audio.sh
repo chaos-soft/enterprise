@@ -1,4 +1,6 @@
-PIPEWIRE_LATENCY='128/48000' pw-jack calfjackhost &
-PIPEWIRE_LATENCY='128/48000' pw-jack obs &
+obs &
+sleep 2s
+pactl load-module module-combine-sink
 pavucontrol &
-pw-loopback -m '[FL FR]' --capture-props='media.class=Audio/Sink node.name=xxx' &
+sleep 2s
+PIPEWIRE_LATENCY='128/48000' pw-jack carla ~/Documents/enterprise/stream/carla.carxp &
