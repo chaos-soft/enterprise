@@ -1,5 +1,7 @@
-obs &
+pactl unload-module module-combine-sink
 sleep 2s
+
+obs &
 pactl load-module module-combine-sink
 pavucontrol &
 sleep 2s

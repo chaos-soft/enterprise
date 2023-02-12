@@ -70,3 +70,5 @@ sudo xbps-install \
     mesa-dri-32bit \
     mesa-vulkan-radeon-32bit \
     vkBasalt-32bit
+
+sudo npm install standard --global

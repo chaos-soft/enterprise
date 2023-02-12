@@ -2,7 +2,6 @@ rm ~/.local/share/fonts
 
 cp -rp ~/Documents/fonts ~/.local/share
 install -pDvm644 ~/Documents/enterprise/.bash_history ~/.bash_history
-install -pDvm644 ~/Documents/enterprise/flake8 ~/.config/flake8
 install -pDvm644 ~/Documents/enterprise/fonts.conf ~/.config/fontconfig/fonts.conf
 install -pDvm644 ~/Documents/enterprise/gnome/gnome-shell.css ~/.themes/xxx/gnome-shell/gnome-shell.css
 install -pDvm644 ~/Documents/enterprise/gnome/gtk.css ~/.config/gtk-3.0/gtk.css
