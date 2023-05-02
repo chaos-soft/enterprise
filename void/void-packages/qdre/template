@@ -1,6 +1,6 @@
 # Template file for 'qdre'
 pkgname=qdre
-version=7e3b8f03
+version=332d59bf
 revision=1
 build_style=cmake
 hostmakedepends="pkg-config"

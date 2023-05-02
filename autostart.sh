@@ -1,5 +1,6 @@
 pkill pipewire
 sleep 1
+
 pipewire &
 pipewire-pulse &
-~/Documents/python/tools/alisa.py
+xrandr --output HDMI-A-0 --set TearFree on

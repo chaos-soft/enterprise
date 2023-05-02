@@ -80,7 +80,7 @@ sort-order=0
 browser-sidebar-width=280
 go-to-last-location=true
 maximized=true
-reuse-active-window=true
+reuse-active-window=false
 scroll-action='zoom'
 single-click-activation=false
 sort-type='file::mtime'
@@ -120,10 +120,16 @@ show-image-thumbnails='never'
 initial-size=(960, 1006)
 
 [org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
 mic-mute=['<Primary>F10']
 volume-down=['F11']
 volume-mute=['F10']
 volume-up=['F12']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2]
+binding='Print'
+command="sh -c \"xfce4-screenshooter -f -s ~/Pictures/Screenshots/`date +'%Y%m%d-%H%M%S'`.png\""
+name='s'
 
 [org/gnome/settings-daemon/plugins/power]
 power-button-action='interactive'
@@ -135,11 +141,13 @@ disable-user-extensions=false
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=@as []
 
+[org/gnome/shell/app-switcher]
+current-workspace-only=true
+
 [org/gnome/shell/extensions/user-theme]
 name='xxx'
 
 [org/gnome/shell/keybindings]
-screenshot=['Print']
 show-screenshot-ui=@as []
 
 [org/gnome/system/location]

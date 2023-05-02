@@ -16,15 +16,14 @@ find . -type f | egrep --color '[а-яА-Я]+'
 find . \! -user $USER -o \! -group $USER
 find ~ -type f -executable ! -path '*/Steam/*' ! -path '*/void-packages/*'
 sudo find . -depth -name '.DS_Store' -print -delete
+sudo find . -depth -name '__pycache__' -print -exec rm -rf {} +
 sudo find . -type d -empty -print -delete
 
 GIT_ASKPASS= git push --all --dry-run origin
 GTK_DEBUG=interactive thunar
-WINEDLLOVERRIDES=ddraw=n,b %command%
-WINEPREFIX='/mnt/polina/games/gta 5/pfx' ./wine winecfg
-adb install NetGuard-v2.300-release.apk
+WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine winecfg
+adb install -r NetGuard-v2.303-release.apk
 cat /proc/driver/nvidia/params
-curl -X POST -d 'client_id=&client_secret=&grant_type=client_credentials&scope=chat:read' https://id.twitch.tv/oauth2/token > twitch.json
 dconf dump / > ~/Documents/enterprise/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
 gsettings get org.gnome.shell app-picker-layout
@@ -32,7 +31,8 @@ gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
 ls -la --time-style=long-iso
 python3 -m venv ~/tmp/miranda
-scp -pr ~/Documents/python/miranda/app/twitch.py root@xxx:/root/python/miranda/app/
+scp -pr ~/Documents/python/velvet/store/api/articles/57.json root@xxx:/root/python/velvet/store/api/articles/
+ssh root@xxx 'cd ~/python/velvet/ && docker-compose -f dc.nginx.yml restart'
 ssh root@xxx 'cd ~/python/miranda/ && docker-compose up -d'
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
 sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
@@ -53,31 +53,36 @@ sudo xbps-install --repository=hostdir/binpkgs/multilib/ obs-vkcapture32-32bit
 
 ./mangohud-setup.sh install
 sudo fstrim --fstab -v
+sudo npm install standard --global
 sudo vkpurge rm all
+sudo xbps-install -Su
+sudo xbps-install void-repo-multilib void-repo-multilib-nonfree void-repo-nonfree
 sudo xbps-reconfigure -f glibc-locales
 sudo xbps-reconfigure -f linux6.1
+sudo xbps-remove -oO
 sudo ~/Documents/python/tools/polina.py rebuild
 
-cd ~/Documents/python/miranda/ && docker-compose up
-cd ~/Documents/python/velvet/ && docker-compose -f dc.nginx.yml up
-cd ~/Documents/python/velvet/ && docker-compose up
 docker exec -it vv_velvet_1 bash
 docker images && docker network ls && docker ps -a && docker volume list
 docker save --output miranda.tar miranda
 docker-compose -f dc.nginx.yml up
-docker-compose exec -T db mysql -uroot -proot penny < sql
+docker-compose exec -T db mysql -uroot -proot velvet < sql
+docker-compose exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
 docker-compose exec velvet coverage report -m
 docker-compose exec velvet coverage run --source='.' manage.py test blog bookmarks
-docker-compose exec velvet python manage.py dumpdata --indent 4 -o backup.json && sudo chown -R $USER:$USER backup.json
+docker-compose exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o backup.json && sudo chown -R $USER:$USER app/backup.json
 docker-compose exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-docker-compose exec velvet python manage.py generatehtml && sudo chown -R $USER:$USER store/html/
+docker-compose exec velvet python manage.py generatejson && sudo chown -R $USER:$USER store/api/
 docker-compose exec velvet python manage.py loaddata store/bookmarks.json
 docker-compose restart velvet
-docker-compose up
 
-WINEDLLOVERRIDES=winedbg.exe=d VK_INSTANCE_LAYERS=VK_LAYER_VKBASALT_post_processing:VK_LAYER_MANGOHUD_overlay steam
-WINEDLLOVERRIDES=wininet=d VK_INSTANCE_LAYERS=VK_LAYER_VKBASALT_post_processing:VK_LAYER_MANGOHUD_overlay steam
+DINO_CRISIS=1 WINEDLLOVERRIDES=ddraw=n firejail --net=none --noprofile steam
+GTA=5 WINEDLLOVERRIDES=winedbg.exe=d steam
+MAFIA=1 WINEDLLOVERRIDES=d3d8=n firejail --net=none --noprofile steam
+TOMB_RAIDER=1 pp_jimenezmlaa_color=8 firejail --net=none --noprofile steam
+VKD3D_CONFIG=no_upload_hvv firejail --net=none --noprofile steam
+cd ~/Documents/python/miranda/ && ~/tmp/miranda/bin/python -m miranda && echo $?
+curl -o sitemap.xml http://localhost/sitemap
 curl cheat.sh/python/list
 npm run dev
-~/tmp/miranda/bin/python ~/Documents/python/miranda/app/miranda.py && echo $?
 sudo ~/Documents/python/tools/shutdown.py 04:00
