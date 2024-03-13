@@ -5,6 +5,7 @@ systemctl disable rpcbind
 
 apt update && apt upgrade
 apt autoremove --purge
+apt install `cat install`
 docker load -i miranda.tar
 netstat -tulpn
 ~/tmp/docker.sh

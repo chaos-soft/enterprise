@@ -1,22 +1,17 @@
-rm ~/.local/share/fonts
-rm ~/Documents/python/flake8
-
-mkdir -p ~/Documents/python/flake8
+rm -r ~/.local/share/fonts
 
 cp -rp ~/Documents/fonts ~/.local/share
-install -pDvm644 ~/Documents/enterprise/.bash_history ~/.bash_history
-install -pDvm644 ~/Documents/enterprise/flake8 ~/.config/flake8
 install -pDvm644 ~/Documents/enterprise/fonts.conf ~/.config/fontconfig/fonts.conf
 install -pDvm644 ~/Documents/enterprise/gnome/gnome-shell.css ~/.themes/xxx/gnome-shell/gnome-shell.css
 install -pDvm644 ~/Documents/enterprise/gnome/gtk.css ~/.config/gtk-3.0/gtk.css
-install -pDvm644 ~/Documents/enterprise/ssr/settings.conf ~/.ssr/settings.conf
-install -pDvm644 ~/Documents/enterprise/user.js ~/.mozilla/firefox/pm1k1njk.default-default/user.js
+install -pDvm644 ~/Documents/enterprise/Preferences.sublime-settings ~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+install -pDvm644 ~/Documents/enterprise/SublimeLinter.sublime-settings ~/.config/sublime-text/Packages/User/SublimeLinter.sublime-settings
+install -pDvm644 ~/Documents/enterprise/user.js ~/.mozilla/firefox/q3qjdlqd.default/user.js
 
-python3 -m venv ~/Documents/python/flake8
-~/Documents/python/flake8/bin/pip install --no-cache-dir python-language-server flake8 flake8-docstrings pyls-mypy future
+sudo install -pDvm644 /run/current-system/sw/share/doc/mangohud/MangoHud.conf.example ~/tmp/mh
+sudo chown -R $USER:users ~/tmp/mh
 
-sudo install -pDvm644 /usr/share/doc/mangohud/MangoHud.conf.example ~/tmp/mh
-sudo chown $USER:$USER ~/tmp/mh
+curl -LJ -o ~/tmp/vkBasalt.conf https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf
 
 dconf reset -f /
 dconf load / < ~/Documents/enterprise/gnome/dconf

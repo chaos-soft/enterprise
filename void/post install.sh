@@ -1,26 +1,32 @@
-rm ~/.local/share/fonts
+rm -r ~/.local/share/fonts
 
 cp -rp ~/Documents/fonts ~/.local/share
-install -pDvm644 ~/Documents/enterprise/.bash_history ~/.bash_history
+install -pDvm644 /etc/sway/config ~/Documents/python/tools/backup/config
 install -pDvm644 ~/Documents/enterprise/fonts.conf ~/.config/fontconfig/fonts.conf
 install -pDvm644 ~/Documents/enterprise/gnome/gnome-shell.css ~/.themes/xxx/gnome-shell/gnome-shell.css
 install -pDvm644 ~/Documents/enterprise/gnome/gtk.css ~/.config/gtk-3.0/gtk.css
-install -pDvm644 ~/Documents/enterprise/ssr/settings.conf ~/.ssr/settings.conf
-install -pDvm644 ~/Documents/enterprise/user.js ~/.mozilla/firefox/pm1k1njk.default-default/user.js
+install -pDvm644 ~/Documents/enterprise/sublime\ text/Default\ Dark.sublime-theme ~/.config/sublime-text/Packages/User/Default\ Dark.sublime-theme
+install -pDvm644 ~/Documents/enterprise/sublime\ text/Mariana.sublime-color-scheme ~/.config/sublime-text/Packages/User/Mariana.sublime-color-scheme
+install -pDvm644 ~/Documents/enterprise/sublime\ text/Preferences.sublime-settings ~/.config/sublime-text/Packages/User/Preferences.sublime-settings
+install -pDvm644 ~/Documents/enterprise/sublime\ text/SublimeLinter.sublime-settings ~/.config/sublime-text/Packages/User/SublimeLinter.sublime-settings
+install -pDvm644 ~/Documents/enterprise/user.js ~/.mozilla/firefox/q3qjdlqd.default/user.js
 
-sudo rm /var/service/bluetoothd
 sudo rm /var/service/docker
 sudo rm /var/service/gdm
-sudo rm /var/service/lxdm
+sudo rm /var/service/lightdm
 sudo rm /var/service/sshd
+sudo rm /var/service/tor
 
 sudo ln -s /etc/sv/docker /var/service/
 sudo ln -s /etc/sv/gdm /var/service/
+sudo ln -s /etc/sv/tor /var/service/
 
 sudo usermod -aG docker $USER
 
-sudo install -pDvm644 /usr/share/doc/mangohud/MangoHud.conf.example ~/tmp/mh
-sudo chown $USER:$USER ~/tmp/mh
+curl -LJ -o ~/Documents/python/tools/backup/gtk.css https://raw.githubusercontent.com/lassekongo83/adw-colors/main/themes/nord/gtk.css
+curl -LJ -o ~/Documents/python/tools/backup/vkBasalt.conf https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf
+install -pDvm644 /etc/sway/config ~/Documents/python/tools/backup/config
+install -pDvm644 /usr/share/doc/mangohud/MangoHud.conf.example ~/Documents/python/tools/backup/mh
 
 dconf reset -f /
 dconf load / < ~/Documents/enterprise/gnome/dconf
