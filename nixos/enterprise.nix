@@ -1,72 +1,130 @@
 { config, pkgs, ... }:
 
-let
-  pkgsU = import "/home/chaos/Downloads/nixpkgs" {};
-in {
+{
   boot = {
-    kernelPackages = pkgs.linuxPackages_5_13;
-    kernelParams = [ "nvidia-drm.modeset=1" ];
+    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "mitigations=off" "drm.edid_firmware=edid/edid.bin" ];
   };
 
   environment = {
+    gnome.excludePackages = with pkgs; [
+      # gnome.totem
+      epiphany
+      evolution
+      gnome-text-editor
+      gnome-tour
+      gnome.geary
+      gnome.gnome-calendar
+      gnome.gnome-maps
+      gnome.gnome-music
+      gnome.gnome-online-miners
+      gnome.gnome-software
+      gnome.gnome-weather
+      gnome.simple-scan
+      gnome.yelp
+      loupe
+      snapshot
+    ];
+    sessionVariables = {
+      PATH = [
+        "$HOME/node_modules/.bin"
+        "$HOME/tmp/flake8/bin"
+      ];
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+    };
     systemPackages = with pkgs; [
-      (nginx.override { modules = [ pkgs.nginxModules.rtmp ]; })
-      atom
+      # feh
+      # lxappearance
+      # nordic
+      # p7zip
+      # protontricks
+      # w3m
+      # wine
+      # winetricks
+      android-tools
+      blender
+      calf
       carla
       certbot
+      curl
       docker-compose
       ffmpeg
-      firefox
-      firejail
       git
       gitg
-      gnome.gnome-tweak-tool
+      gnome.gnome-tweaks
+      go
+      golangci-lint
       gparted
+      grim
       gthumb
+      imagemagick
+      kitty
+      libsForQt5.breeze-icons
+      libsForQt5.breeze-qt5
+      libsForQt5.kompare
+      libsForQt5.konsole
+      libsForQt5.qt5ct
       lsp-plugins
       mangohud
       mc
+      mednaffe
+      minetest
       mpv
-      nix-prefetch-github
+      nano
       nmap
-      nordic
+      nodejs_21
       obs-studio
-      obs-studio-plugins.obs-nvfbc
-      p7zip
       pavucontrol
-      pkgsU.qdre
-      python39
-      qjackctl
-      qt5ct
+      pipewire.jack
+      python312
       ranger
-      shotcut
-      skype
-      tilix
-      transmission-gtk
-      vkBasalt
+      rofi
+      sublime4
+      tor-browser
+      transmission_4-qt
+      unrar
+      usbutils
+      vkbasalt
       vulkan-tools
+      xbindkeys
       xdotool
-      youtube-dl
+      xfce.xfce4-screenshooter
+      xorg.xev
+      xorg.xmodmap
+      yt-dlp
+      # (
+      #   wrapOBS {
+      #     plugins = with obs-studio-plugins; [
+      #       obs-gstreamer
+      #       obs-vaapi
+      #       obs-vkcapture
+      #     ];
+      #   }
+      # )
     ];
     variables = {
-      # DXVK_HUD = "full";
-      DXVK_ASYNC = "1";
       DXVK_LOG_LEVEL = "none";
+      DXVK_STATE_CACHE_PATH = "/home/chaos/.cache/dxvk";
       ENABLE_VKBASALT = "1";
-      GTK_THEME = "Nordic-bluish-accent";
       MANGOHUD = "1";
-      MANGOHUD_CONFIGFILE = "/home/chaos/Documents/enterprise/MangoHud.conf";
-      VKBASALT_CONFIG_FILE = "/home/chaos/Documents/enterprise/vkBasalt.conf";
+      MANGOHUD_CONFIGFILE = "/home/chaos/tmp/mh";
+      RADV_TEX_ANISO = "16";
+      VKBASALT_CONFIG_FILE = "/home/chaos/tmp/vkBasalt.conf";
       VKD3D_DEBUG = "none";
+      WLR_DRM_NO_ATOMIC = "1";
     };
   };
 
   fileSystems = {
     "/".options = [ "defaults" "noatime" ];
+    "/mnt/larka" = {
+      device = "/dev/disk/by-label/larka";
+      fsType = "ext4";
+      options = [ "defaults" "noatime" "nofail" ];
+    };
     "/mnt/polina" = {
       device = "/dev/disk/by-label/polina";
       fsType = "ext4";
-      options = [ "defaults" "noatime" ];
+      options = [ "defaults" "noatime" "nofail" ];
     };
   };
 
@@ -78,53 +136,54 @@ in {
     subpixel.rgba = "none";
   };
 
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.firmware = [
+    (
+      pkgs.runCommand "edid.bin" {} ''
+        mkdir -p $out/lib/firmware/edid
+        cp ${/home/chaos/tmp/edid.bin} $out/lib/firmware/edid/edid.bin
+      ''
+    )
+  ];
 
   networking = {
-    defaultGateway = "172.18.22.1";
     enableIPv6 = false;
     firewall.allowPing = false;
     hostName = "enterprise";
-    interfaces.enp4s0.ipv4.addresses = [
-      { address = "172.18.22.133"; prefixLength = 24; }
-    ];
     nameservers = [ "208.67.222.222" "208.67.220.220" ];
-    useDHCP = false;
   };
 
-  nixpkgs.config.allowUnfree = true;
+  powerManagement.enable = false;
 
   programs = {
-    qt5ct.enable = true;
+    # fish.enable = true;
+    corectrl.enable = true;
+    firefox.enable = true;
+    firejail.enable = true;
     steam.enable = true;
+    sway.enable = true;
   };
 
-  qt5.enable = false;
-
-  security.wrappers.firejail.source = "${pkgs.firejail}/bin/firejail";
-
   services = {
+    flatpak.enable = true;
     fstrim.enable = true;
     gnome = {
       tracker-miners.enable = false;
       tracker.enable = false;
     };
-    jack = {
-      alsa.enable = false;
-      jackd.enable = true;
-    };
-    xserver = {
-      desktopManager.gnome.enable = true;
-      enable = true;
-      videoDrivers = [ "nvidia" ];
-      windowManager.i3.enable = true;
-    };
+    udev.extraRules = ''
+      ACTION=="add", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="3106", RUN+="${pkgs.kmod}/bin/modprobe xpad", RUN+="${pkgs.bash}/bin/sh -c 'echo 2dc8 3106 > /sys/bus/usb/drivers/xpad/new_id'"
+    '';
+    # xserver = {
+    #   desktopManager.xfce = {
+    #     enable = true;
+    #     noDesktop = true;
+    #   };
+    #   windowManager.i3.enable = true;
+    # };
   };
 
-  time.timeZone = "Europe/Moscow";
-
   users.users.chaos = {
-    extraGroups = [ "docker" "jackaudio" "wheel" ];
+    extraGroups = [ "docker" "wheel" "networkmanager" "corectrl" ];
     isNormalUser = true;
   };
 

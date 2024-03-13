@@ -1,13 +1,15 @@
 [org/gnome/desktop/background]
-picture-uri='file:///home/chaos/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg'
+picture-uri='file:///home/chaos/Pictures/Screenshots/Screenshot from 2021-04-20 01-58-49.png'
 
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'us'), ('xkb', 'ru')]
-xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch']
+xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch', 'grp:caps_toggle']
 
 [org/gnome/desktop/interface]
 clock-show-weekday=true
 document-font-name='Sans 10.19921875'
+font-antialiasing='grayscale'
+font-hinting='slight'
 font-name='Sans 10.19921875'
 monospace-font-name='Monospace 10'
 
@@ -35,15 +37,27 @@ disable-external=true
 [org/gnome/desktop/session]
 idle-delay=uint32 0
 
+[org/gnome/desktop/sound]
+allow-volume-above-100-percent=true
+
 [org/gnome/desktop/wm/keybindings]
 close=['<Primary>q']
-switch-applications=['<Primary>Tab']
-switch-applications-backward=['<Primary><Shift>Tab']
-switch-group=['<Primary>grave']
-switch-group-backward=['<Primary><Shift>grave']
+cycle-windows=['<Control>Tab']
+cycle-windows-backward=['<Shift><Control>Tab']
+switch-windows=@as []
+switch-windows-backward=@as []
 
 [org/gnome/desktop/wm/preferences]
 titlebar-font='Sans 10.19921875'
+
+[org/gnome/gitg/preferences/interface]
+enable-diff-highlighting=false
+
+[org/gnome/gitg/state/commit]
+paned-sidebar-position=300
+
+[org/gnome/gitg/state/history]
+paned-sidebar-position=300
 
 [org/gnome/gnome-system-monitor]
 current-tab='processes'
@@ -75,7 +89,7 @@ sort-order=0
 browser-sidebar-width=280
 go-to-last-location=true
 maximized=true
-reuse-active-window=true
+reuse-active-window=false
 scroll-action='zoom'
 single-click-activation=false
 sort-type='file::mtime'
@@ -93,6 +107,9 @@ store-metadata-in-files=false
 [org/gnome/gthumb/image-viewer]
 reset-scrollbars=false
 zoom-change='keep-prev'
+
+[org/gnome/gthumb/pixbuf-savers/jpeg]
+default-ext='jpg'
 
 [org/gnome/mutter]
 attach-modal-dialogs=false
@@ -115,23 +132,21 @@ show-image-thumbnails='never'
 initial-size=(960, 1006)
 
 [org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+home=['<Super>n']
+mic-mute=['<Primary>F10']
 volume-down=['F11']
 volume-mute=['F10']
 volume-up=['F12']
 
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
-binding='<Primary>0'
-command="sh -c 'sleep 0.1 && xdotool key --delay 100 m Down Down Return Down Down Down Return Up Up Up Return Escape Escape Escape'"
-name='c0'
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2]
+binding='Print'
+command="sh -c \"xfce4-screenshooter -f -s ~/Pictures/Screenshots/`date +'%Y%m%d-%H%M%S'`.png\""
+name='s'
 
 [org/gnome/settings-daemon/plugins/power]
 power-button-action='interactive'
 sleep-inactive-ac-type='nothing'
-
-[org/gnome/settings-daemon/plugins/xsettings]
-antialiasing='grayscale'
-hinting='slight'
 
 [org/gnome/shell]
 command-history=['r']
@@ -139,8 +154,14 @@ disable-user-extensions=false
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=@as []
 
+[org/gnome/shell/app-switcher]
+current-workspace-only=true
+
 [org/gnome/shell/extensions/user-theme]
 name='xxx'
+
+[org/gnome/shell/keybindings]
+show-screenshot-ui=@as []
 
 [org/gnome/system/location]
 enabled=false

@@ -1,79 +1,87 @@
 egrep --color -rI 'articles/[0-9]{1,}/[0-9]' .
+grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\r' .
+grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\t' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '  ' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:alnum:]]  [[:alnum:]]' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:blank:]]$' .
-grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\r' .
-grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\t' .
 grep --color -rI --text 'HDR+' .
+
+find . ! -perm 644 -type f -o ! -perm 755 -type d
+find . ! -user $USER -o ! -group $USER
 find . -newermt '2017-12-01 00:00:00' ! -newermt '2019-05-01 00:00:00'
+find . -newermt '2023-05-01 00:00:00' ! -newermt '2023-12-20 00:00:00'
 find . -type d -print0 | xargs -0 chmod 0755
-find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 > ~/Documents/hzd
+find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd > /mnt/larka/tmp/re3.txt.new
 find . -type f -print0 | xargs -0 chmod 0644
-find . -type f -printf "mv '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
-find . -type f -printf "mv '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
+find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
+find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
 find . -type f | egrep --color '[а-яА-Я]+'
-find . \! -user chaos -o \! -group users
+find ~ -type f -executable ! -path '*/Steam/*' ! -path '*/void-packages/*'
 sudo find . -depth -name '.DS_Store' -print -delete
+sudo find . -depth -name '__pycache__' -print -exec rm -rf {} +
 sudo find . -type d -empty -print -delete
-curl -X POST -d 'client_id=&client_secret=&grant_type=client_credentials&scope=chat:read' https://id.twitch.tv/oauth2/token
+
+GIT_ASKPASS= git push --all --dry-run origin
+GTK_DEBUG=interactive thunar
+WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine winecfg
+adb install -r xxx
+adb shell pm list packages
+adb uninstall xxx
 dconf dump / > ~/Documents/enterprise/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
-git clone --depth=1 https://github.com/NixOS/nixpkgs.git
-GIT_ASKPASS= git push --all --dry-run origin
+git clone --branch dev https://github.com/chaos-soft/enterprise.git
 gsettings get org.gnome.shell app-picker-layout
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
-GTK_DEBUG=interactive gnome-clocks
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
 ls -la --time-style=long-iso
-lsblk && sudo nano /etc/nixos/configuration.nix
-OBS_PLUGINS_PATH=/run/current-system/sw/lib/obs-plugins OBS_PLUGINS_DATA_PATH=/run/current-system/sw/share/obs/obs-plugins OBS_USE_EGL=1 obs
+scp -pr ~/Documents/python/velvet/store/api/articles/57.json polina:/root/python/velvet/store/api/articles/
+ssh polina 'cd ~/python/miranda/ && docker-compose up -d'
+ssh polina 'cd ~/python/velvet/ && docker-compose -f dc.nginx.yml restart'
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
 sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
-sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R chaos:users .Trash-1000
-sudo mkdir -p games tmp && sudo chown -R chaos:users games tmp
+sudo dmesg | grep BAR
+sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R $USER:$USER .Trash-1000
+sudo mkdir -p games tmp && sudo chown -R $USER:$USER games tmp
 sudo netstat -tulpn
-WINEPREFIX='/mnt/polina/games/gta 5/pfx' steam-run ./wine winecfg
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
 youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oSr3a6JLHUs
-nix-build -A linuxPackages_5_12.mt7601u-ap
-nix-prefetch-github --rev v0.7 nowrep obs-vkcapture
-sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-sudo nix-channel --list
-sudo nix-collect-garbage -d
-sudo nix-store --optimise
-sudo nixos-rebuild boot --upgrade
-cset shield
-cset shield -s -v
-sudo cset shield --threads -s -p 11911
-sudo cset shield -c 4-15
-sudo cset shield -k on
-sudo cset shield -r
-taskset -ac 0-5 %command%
-taskset -apc 2-7 20010
-cd ~/Documents/python/miranda/ && docker-compose up
-cd ~/Documents/python/velvet/ && docker-compose -f dc.nginx.yml up
-cd ~/Documents/python/velvet/ && docker-compose up
+yt-dlp --no-mtime https://www.youtube.com/embed/45HMKmDuXEE
+
+./xbps-src -a i686 pkg obs-vkcapture32
+./xbps-src binary-bootstrap
+./xbps-src pkg obs-vkcapture
+git clone --depth=1 https://github.com/void-linux/void-packages.git
+sudo xbps-install --repository=hostdir/binpkgs obs-vkcapture
+sudo xbps-install --repository=hostdir/binpkgs/multilib/ obs-vkcapture32-32bit
+
+sudo fstrim --fstab -v
+sudo npm install standard --global
+sudo vkpurge rm all
+sudo xbps-install -Su
+sudo xbps-install `cat ~/Documents/enterprise/void/install`
+sudo xbps-install `cat ~/Documents/enterprise/void/multilib\ nonfree`
+sudo xbps-reconfigure -f glibc-locales
+sudo xbps-reconfigure -f linux6.6
+sudo xbps-remove -oO
+sudo xbps-remove `cat ~/Documents/enterprise/void/remove`
+sudo ~/Documents/python/tools/polina.py rebuild
+
+docker builder prune
 docker exec -it vv_velvet_1 bash
-docker images && docker network ls && docker ps -a
+docker images && docker network ls && docker ps -a && docker volume list
+docker save --output miranda.tar miranda
+docker system df
 docker-compose -f dc.nginx.yml up
-docker-compose exec -T db mysql -uroot -proot penny < sql
+docker-compose exec -T db mysql -uroot -proot velvet < sql
+docker-compose exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
 docker-compose exec velvet coverage report -m
 docker-compose exec velvet coverage run --source='.' manage.py test blog bookmarks
+docker-compose exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o backup.json && sudo chown -R $USER:$USER app/backup.json
 docker-compose exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-docker-compose exec velvet python manage.py generatehtml
+docker-compose exec velvet python manage.py generatejson && sudo chown -R $USER:$USER store/
 docker-compose exec velvet python manage.py loaddata store/bookmarks.json
 docker-compose restart velvet
-docker-compose up
-cd ~/Documents/enterprise/stream && sh audio.sh
-nginx -c ~/Documents/enterprise/stream/nginx.conf
-nginx -c ~/Documents/enterprise/stream/nginx.conf -s stop
-cd '/mnt/polina/games/steam/steamapps/common/Proton 5.13' && sh '/home/chaos/Documents/enterprise/games/far cry 3.sh'
-cd '/mnt/polina/games/steam/steamapps/common/Proton 6.3' && sh '/home/chaos/Documents/enterprise/games/gta 5.sh'
+
+curl -o sitemap.xml http://localhost/sitemap
 curl cheat.sh/python/list
-firejail --net=none --noprofile atom
-qdre-compositor
-ranger
-sudo mount /nix/store/ -o remount,rw
-sudo nvidia-smi -pm 1 && sudo nvidia-smi -pl 100
-sudo shutdown -c
-sudo shutdown -h +60
+sudo ~/Documents/python/tools/shutdown.py 04:00
