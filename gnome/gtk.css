@@ -1,3 +1,7 @@
 * {
   font-weight: normal;
 }
+
+textview, textview > * {
+  background-color: #3d4455;
+}

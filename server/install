@@ -1,1 +1,5 @@
-python3-venv
+containerd.io
+docker-buildx-plugin
+docker-ce
+docker-ce-cli
+docker-compose-plugin

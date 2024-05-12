@@ -1,14 +1,15 @@
 nano /etc/ssh/sshd_config
-systemctl restart ssh
 systemctl disable bind9
 systemctl disable rpcbind
+systemctl restart ssh
 
-apt update && apt upgrade
 apt autoremove --purge
-apt install `cat install`
-docker load -i miranda.tar
+apt install `cat ~/tmp/install`
+apt update && apt upgrade
+docker load -i ~/tmp/miranda.tar.gz
 netstat -tulpn
+~/python/tools/polina.py rebuild
 ~/tmp/docker.sh
 
-cd ~/python/miranda/ && docker-compose up -d
-cd ~/python/velvet/ && docker-compose -f dc.nginx.yml up -d
+cd ~/python/miranda/ && docker compose -f dc.playwright.yml up -d
+cd ~/python/velvet/ && docker compose -f dc.nginx.yml up -d

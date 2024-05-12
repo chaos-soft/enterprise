@@ -7,7 +7,9 @@ xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch', 'grp:c
 
 [org/gnome/desktop/interface]
 clock-show-weekday=true
+color-scheme='prefer-dark'
 document-font-name='Sans 10.19921875'
+enable-hot-corners=false
 font-antialiasing='grayscale'
 font-hinting='slight'
 font-name='Sans 10.19921875'
@@ -21,6 +23,10 @@ show-banners=false
 
 [org/gnome/desktop/peripherals/keyboard]
 delay=uint32 300
+
+[org/gnome/desktop/peripherals/mouse]
+accel-profile='flat'
+speed=-0.30000000000000000
 
 [org/gnome/desktop/privacy]
 disable-camera=true
@@ -111,6 +117,9 @@ zoom-change='keep-prev'
 [org/gnome/gthumb/pixbuf-savers/jpeg]
 default-ext='jpg'
 
+[org/gnome/gthumb/pixbuf-savers/png]
+compression-level=9
+
 [org/gnome/mutter]
 attach-modal-dialogs=false
 center-new-windows=true
@@ -120,13 +129,14 @@ dynamic-workspaces=true
 default-zoom-level='standard'
 
 [org/gnome/nautilus/list-view]
-default-visible-columns=['name', 'size', 'owner', 'group', 'permissions', 'date_modified_with_time']
+default-visible-columns=['name', 'size', 'owner', 'group', 'permissions', 'date_modified', 'date_created']
 default-zoom-level='small'
 use-tree-view=true
 
 [org/gnome/nautilus/preferences]
+date-time-format='detailed'
 fts-enabled=false
-show-image-thumbnails='never'
+show-image-thumbnails='local-only'
 
 [org/gnome/nautilus/window-state]
 initial-size=(960, 1006)
@@ -161,7 +171,11 @@ current-workspace-only=true
 name='xxx'
 
 [org/gnome/shell/keybindings]
+focus-active-notification=@as []
 show-screenshot-ui=@as []
+toggle-message-tray=@as []
+toggle-overview=['Menu']
+toggle-quick-settings=@as []
 
 [org/gnome/system/location]
 enabled=false

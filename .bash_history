@@ -9,7 +9,7 @@ grep --color -rI --text 'HDR+' .
 find . ! -perm 644 -type f -o ! -perm 755 -type d
 find . ! -user $USER -o ! -group $USER
 find . -newermt '2017-12-01 00:00:00' ! -newermt '2019-05-01 00:00:00'
-find . -newermt '2023-05-01 00:00:00' ! -newermt '2023-12-20 00:00:00'
+find . -newermt '2023-05-01 00:00:00' ! -newermt '2023-11-01 00:00:00'
 find . -type d -print0 | xargs -0 chmod 0755
 find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd > /mnt/larka/tmp/re3.txt.new
 find . -type f -print0 | xargs -0 chmod 0644
@@ -27,7 +27,7 @@ WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine winecfg
 adb install -r xxx
 adb shell pm list packages
 adb uninstall xxx
-dconf dump / > ~/Documents/enterprise/dconf
+dconf dump / > ~/tmp/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
 git clone --branch dev https://github.com/chaos-soft/enterprise.git
 gsettings get org.gnome.shell app-picker-layout
@@ -35,9 +35,10 @@ gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
 ls -la --time-style=long-iso
 scp -pr ~/Documents/python/velvet/store/api/articles/57.json polina:/root/python/velvet/store/api/articles/
-ssh polina 'cd ~/python/miranda/ && docker-compose up -d'
-ssh polina 'cd ~/python/velvet/ && docker-compose -f dc.nginx.yml restart'
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
+ssh polina 'cd ~/python/miranda/ && docker compose -f dc.playwright.yml up -d'
+ssh polina 'cd ~/python/miranda/ && docker compose up -d'
+ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml restart'
 sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
 sudo dmesg | grep BAR
 sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R $USER:$USER .Trash-1000
@@ -66,17 +67,18 @@ sudo xbps-remove -oO
 sudo xbps-remove `cat ~/Documents/enterprise/void/remove`
 sudo ~/Documents/python/tools/polina.py rebuild
 
+docker build -t miranda:20240328 .
 docker builder prune
 docker exec -it vv_velvet_1 bash
 docker images && docker network ls && docker ps -a && docker volume list
-docker save --output miranda.tar miranda
+docker save miranda | gzip > miranda.tar.gz
 docker system df
 docker-compose -f dc.nginx.yml up
 docker-compose exec -T db mysql -uroot -proot velvet < sql
 docker-compose exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
 docker-compose exec velvet coverage report -m
 docker-compose exec velvet coverage run --source='.' manage.py test blog bookmarks
-docker-compose exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o backup.json && sudo chown -R $USER:$USER app/backup.json
+docker-compose exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o store/backup.json && sudo chown -R $USER:$USER store/
 docker-compose exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
 docker-compose exec velvet python manage.py generatejson && sudo chown -R $USER:$USER store/
 docker-compose exec velvet python manage.py loaddata store/bookmarks.json
