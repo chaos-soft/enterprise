@@ -186,5 +186,37 @@ show-hidden=true
 show-type-column=false
 sort-directories-first=true
 
+[org/mate/caja/icon-view]
+default-use-tighter-layout=true
+default-zoom-level='largest'
+labels-beside-icons=false
+
+[org/mate/caja/list-view]
+default-column-order=['name', 'size', 'owner', 'group', 'permissions', 'date_modified', 'date_created', 'type', 'date_accessed', 'extension', 'where', 'mime_type', 'octal_permissions', 'size_on_disk']
+default-visible-columns=['name', 'size', 'owner', 'group', 'permissions', 'date_modified', 'date_created']
+
+[org/mate/caja/preferences]
+confirm-trash=false
+date-format='iso'
+default-folder-viewer='list-view'
+default-sort-order='name'
+executable-text-activation='display'
+preview-sound='never'
+show-backup-files=true
+show-directory-item-counts='local-only'
+show-hidden-files=true
+show-icon-text='never'
+show-icons-in-list-view=true
+show-image-thumbnails='local-only'
+
+[org/mate/caja/window-state]
+side-pane-view='places'
+sidebar-width=300
+start-with-toolbar=false
+
+[org/mate/desktop/media-handling]
+automount-open=false
+autorun-never=true
+
 [system/locale]
 region='ru_RU.UTF-8'
