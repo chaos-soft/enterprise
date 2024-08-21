@@ -11,14 +11,14 @@ find . ! -user $USER -o ! -group $USER
 find . -newermt '2017-12-01 00:00:00' ! -newermt '2019-05-01 00:00:00'
 find . -newermt '2023-05-01 00:00:00' ! -newermt '2023-11-01 00:00:00'
 find . -type d -print0 | xargs -0 chmod 0755
-find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd > /mnt/larka/tmp/re3.txt.new
+find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd > /mnt/larka/tmp/tmp.txt
 find . -type f -print0 | xargs -0 chmod 0644
 find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
 find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
+find . -type f -printf 'magick -quality 85 "%f" "%f".jpg\n' | sh
 find . -type f | egrep --color '[а-яА-Я]+'
 find ~ -type f -executable ! -path '*/Steam/*' ! -path '*/void-packages/*'
-sudo find . -depth -name '.DS_Store' -print -delete
-sudo find . -depth -name '__pycache__' -print -exec rm -rf {} +
+sudo find . -depth -name *__pycache__* -print -exec rm -rf {} +
 sudo find . -type d -empty -print -delete
 
 GIT_ASKPASS= git push --all --dry-run origin
@@ -34,8 +34,10 @@ gsettings get org.gnome.shell app-picker-layout
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
 ls -la --time-style=long-iso
+nmap -A -T4 localhost
 scp -pr ~/Documents/python/velvet/store/api/articles/57.json polina:/root/python/velvet/store/api/articles/
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
+ssh -D localhost:51111 polina
 ssh polina 'cd ~/python/miranda/ && docker compose -f dc.playwright.yml up -d'
 ssh polina 'cd ~/python/miranda/ && docker compose up -d'
 ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml restart'
@@ -44,8 +46,11 @@ sudo dmesg | grep BAR
 sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R $USER:$USER .Trash-1000
 sudo mkdir -p games tmp && sudo chown -R $USER:$USER games tmp
 sudo netstat -tulpn
+xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080 --scale 1x1
+xrandr --output HDMI-A-0 --mode 1920x1080 --panning 3840x2160 --scale 2x2
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
 youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oSr3a6JLHUs
+yt-dlp --no-mtime --proxy socks5://127.0.0.1:9150 https://www.youtube.com/embed/45HMKmDuXEE
 yt-dlp --no-mtime https://www.youtube.com/embed/45HMKmDuXEE
 
 ./xbps-src -a i686 pkg obs-vkcapture32
@@ -65,8 +70,9 @@ sudo xbps-reconfigure -f glibc-locales
 sudo xbps-reconfigure -f linux6.6
 sudo xbps-remove -oO
 sudo xbps-remove `cat ~/Documents/enterprise/void/remove`
-sudo ~/Documents/python/tools/polina.py rebuild
+xbps-query -s gamemode
 
+curl -o sitemap.xml http://localhost/sitemap
 docker build -t miranda:20240328 .
 docker builder prune
 docker exec -it vv_velvet_1 bash
@@ -84,6 +90,7 @@ docker-compose exec velvet python manage.py generatejson && sudo chown -R $USER:
 docker-compose exec velvet python manage.py loaddata store/bookmarks.json
 docker-compose restart velvet
 
-curl -o sitemap.xml http://localhost/sitemap
-curl cheat.sh/python/list
-sudo ~/Documents/python/tools/shutdown.py 04:00
+curl cheat.sh/python
+loginctl poweroff
+loginctl reboot
+loginctl suspend

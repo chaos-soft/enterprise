@@ -1,7 +1,6 @@
-blender
+breeze-cursors
 caja
 calf
-Carla
 certbot
 corectrl
 cpupower
@@ -11,7 +10,6 @@ docker-compose
 ffmpeg
 firefox
 firejail
-gamemode
 git
 gitg
 gnome
@@ -19,7 +17,6 @@ gparted
 gthumb
 htop
 ImageMagick
-kompare
 libjack-pipewire
 lsp-plugins
 lutris
@@ -29,40 +26,46 @@ mc
 mednaffe
 mesa-vulkan-radeon
 mesa-vulkan-radeon-32bit
+minetest
 mpv
 nano
 nodejs
+openmw
 pavucontrol
-picom
 pipewire
 python3-flake8
 python3-mypy
-qt6ct
 ranger
 steam
 sublime-text4
-telegram-desktop
 torbrowser-launcher
-transmission-qt
 vkBasalt
 vkBasalt-32bit
 Vulkan-Tools
+wtype
+xdotool
+xev
 xfce4-screenshooter
 xrandr
 yt-dlp
 zramen
 
+Carla
+qt5ct
+
+qt6ct
+qtractor
+transmission-qt
+
 feh
 grim
 i3
-lxappearance
 rofi
 sway
 xinput
 
 obs
 obs-plugin-browser-bin
-qt6-wayland
 
 libdrm-32bit
 libgcc-32bit

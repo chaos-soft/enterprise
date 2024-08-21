@@ -1,5 +1,5 @@
-if [ -f /tmp/tzj ]; then
-    x=$(( $(date +'%s') - $(date +'%s' -r /tmp/tzj) ))
+if [ -f ~/tmp/tzj ]; then
+    x=$(( $(date +'%s') - $(date +'%s' -r ~/tmp/tzj) ))
     y=$(( x / 60 ))
 else
     y=''
