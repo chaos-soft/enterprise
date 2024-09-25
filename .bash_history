@@ -73,22 +73,22 @@ sudo xbps-remove `cat ~/Documents/enterprise/void/remove`
 xbps-query -s gamemode
 
 curl -o sitemap.xml http://localhost/sitemap
+dc -f dc.nginx.yml up
+dc exec -T db mysql -uroot -proot velvet < sql
+dc exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
+dc exec velvet coverage report -m
+dc exec velvet coverage run --source='.' manage.py test blog bookmarks
+dc exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o store/backup.json && sudo chown -R $USER:$USER store/
+dc exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
+dc exec velvet python manage.py generatejson && sudo chown -R $USER:$USER store/
+dc exec velvet python manage.py loaddata store/bookmarks.json
+dc restart velvet
 docker build -t miranda:20240328 .
 docker builder prune
 docker exec -it vv_velvet_1 bash
 docker images && docker network ls && docker ps -a && docker volume list
 docker save miranda | gzip > miranda.tar.gz
 docker system df
-docker-compose -f dc.nginx.yml up
-docker-compose exec -T db mysql -uroot -proot velvet < sql
-docker-compose exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
-docker-compose exec velvet coverage report -m
-docker-compose exec velvet coverage run --source='.' manage.py test blog bookmarks
-docker-compose exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o store/backup.json && sudo chown -R $USER:$USER store/
-docker-compose exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-docker-compose exec velvet python manage.py generatejson && sudo chown -R $USER:$USER store/
-docker-compose exec velvet python manage.py loaddata store/bookmarks.json
-docker-compose restart velvet
 
 curl cheat.sh/python
 loginctl poweroff

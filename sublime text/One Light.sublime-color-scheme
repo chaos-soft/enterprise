@@ -1,0 +1,7 @@
+{
+    "variables":
+    {
+        "--background": "white",
+        "--foreground": "black",
+    },
+}

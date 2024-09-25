@@ -13,6 +13,7 @@ firejail
 git
 gitg
 gnome
+godot
 gparted
 gthumb
 htop
@@ -36,8 +37,10 @@ pipewire
 python3-flake8
 python3-mypy
 ranger
+skype
 steam
 sublime-text4
+telegram-desktop
 torbrowser-launcher
 vkBasalt
 vkBasalt-32bit

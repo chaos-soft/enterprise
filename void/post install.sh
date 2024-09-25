@@ -7,11 +7,13 @@ install -pDvm644 /usr/share/vulkan/implicit_layer.d/MangoHud.x86_64.json ~/Docum
 install -pDvm644 ~/Documents/enterprise/fonts.conf ~/.config/fontconfig/fonts.conf
 install -pDvm644 ~/Documents/enterprise/gnome/gnome-shell.css ~/.themes/xxx/gnome-shell/gnome-shell.css
 install -pDvm644 ~/Documents/enterprise/gnome/gtk.css ~/.config/gtk-3.0/gtk.css
+install -pDvm644 ~/Documents/enterprise/sublime\ text/Default\ Dark.sublime-theme ~/.config/sublime-text/Packages/User/Default.sublime-theme
 install -pDvm644 ~/Documents/enterprise/sublime\ text/Default\ Dark.sublime-theme ~/.config/sublime-text/Packages/User/Default\ Dark.sublime-theme
 install -pDvm644 ~/Documents/enterprise/sublime\ text/Mariana.sublime-color-scheme ~/.config/sublime-text/Packages/User/Mariana.sublime-color-scheme
+install -pDvm644 ~/Documents/enterprise/sublime\ text/One\ Light.sublime-color-scheme ~/.config/sublime-text/Packages/User/One\ Light.sublime-color-scheme
 install -pDvm644 ~/Documents/enterprise/sublime\ text/Preferences.sublime-settings ~/.config/sublime-text/Packages/User/Preferences.sublime-settings
 install -pDvm644 ~/Documents/enterprise/sublime\ text/SublimeLinter.sublime-settings ~/.config/sublime-text/Packages/User/SublimeLinter.sublime-settings
-install -pDvm644 ~/Documents/enterprise/user.js ~/.mozilla/firefox/u6fiijcb.default-default/user.js
+install -pDvm644 ~/Documents/enterprise/firefox/user.js ~/.mozilla/firefox/u6fiijcb.default-default/user.js
 install -pDvm644 ~/Documents/enterprise/xfce4-taskmanager.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-taskmanager.xml
 
 sudo rm /var/service/docker
