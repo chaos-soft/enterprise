@@ -29,15 +29,17 @@ adb shell pm list packages
 adb uninstall xxx
 dconf dump / > ~/tmp/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
+gd '/mnt/larka/tmp/tmp.txt' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
 git clone --branch dev https://github.com/chaos-soft/enterprise.git
 gsettings get org.gnome.shell app-picker-layout
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
 ls -la --time-style=long-iso
 nmap -A -T4 localhost
+npm create vite@latest
 scp -pr ~/Documents/python/velvet/store/api/articles/57.json polina:/root/python/velvet/store/api/articles/
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
-ssh -D localhost:51111 polina
+ssh -D localhost:9150 polina
 ssh polina 'cd ~/python/miranda/ && docker compose -f dc.playwright.yml up -d'
 ssh polina 'cd ~/python/miranda/ && docker compose up -d'
 ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml restart'
@@ -46,6 +48,8 @@ sudo dmesg | grep BAR
 sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R $USER:$USER .Trash-1000
 sudo mkdir -p games tmp && sudo chown -R $USER:$USER games tmp
 sudo netstat -tulpn
+sudo tar --exclude=./lost+found -zcf ~/tmp/void.tar.gz .
+sudo tar -xzvf ~/tmp/void.tar.gz
 xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080 --scale 1x1
 xrandr --output HDMI-A-0 --mode 1920x1080 --panning 3840x2160 --scale 2x2
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
@@ -80,8 +84,8 @@ dc exec velvet coverage report -m
 dc exec velvet coverage run --source='.' manage.py test blog bookmarks
 dc exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o store/backup.json && sudo chown -R $USER:$USER store/
 dc exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-dc exec velvet python manage.py generatejson && sudo chown -R $USER:$USER store/
-dc exec velvet python manage.py loaddata store/bookmarks.json
+dc exec velvet python manage.py generatehtml && sudo chown -R $USER:$USER store/
+dc exec velvet python manage.py loaddata store/backup.json
 dc restart velvet
 docker build -t miranda:20240328 .
 docker builder prune

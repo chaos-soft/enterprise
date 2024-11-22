@@ -1,7 +1,13 @@
+textview,
+textview > * {
+  background-color: #3d4455;
+}
+
 * {
   font-weight: normal;
 }
 
-textview, textview > * {
-  background-color: #3d4455;
+tooltip {
+  opacity: 0;
 }
+

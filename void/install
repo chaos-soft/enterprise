@@ -1,3 +1,4 @@
+blender
 breeze-cursors
 caja
 calf
@@ -6,10 +7,12 @@ corectrl
 cpupower
 curl
 docker
+docker-buildx
 docker-compose
 ffmpeg
 firefox
 firejail
+fluxbox
 git
 gitg
 gnome
@@ -33,6 +36,7 @@ nano
 nodejs
 openmw
 pavucontrol
+picom
 pipewire
 python3-flake8
 python3-mypy
@@ -46,8 +50,10 @@ vkBasalt
 vkBasalt-32bit
 Vulkan-Tools
 wtype
+x42-plugins
 xdotool
 xev
+xfce4-genmon-plugin
 xfce4-screenshooter
 xrandr
 yt-dlp

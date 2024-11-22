@@ -4,7 +4,7 @@
     "caret_extra_top": 0,
     "color_scheme": "Mariana.sublime-color-scheme",
     "ensure_newline_at_eof_on_save": true,
-    "font_options": ["gray_antialias"],
+    "font_options": ["gray_antialias", "no_italic"],
     "highlight_line": true,
     "open_tabs_after_current": false,
     "preview_on_click": false,

@@ -4,6 +4,7 @@
   <property name="interface" type="empty">
     <property name="show-all-processes" type="bool" value="true"/>
     <property name="refresh-rate" type="uint" value="1000"/>
+    <property name="full-command-line" type="bool" value="true"/>
   </property>
   <property name="prompt-terminate-task" type="bool" value="false"/>
   <property name="columns" type="empty">
