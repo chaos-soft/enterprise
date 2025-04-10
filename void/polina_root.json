@@ -1,0 +1,95 @@
+{
+    "/etc/default/grub": {
+        "replace": [
+            [
+                "GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=4\"",
+                "GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=4 amdgpu.ppfeaturemask=0xffffffff mitigations=off\""
+            ]
+        ]
+    },
+    "/etc/default/libc-locales": {
+        "append": [
+            "ru_RU.UTF-8 UTF-8"
+        ]
+    },
+    "/etc/environment": {
+        "append": [
+            "DXVK_LOG_LEVEL=none",
+            "DXVK_STATE_CACHE_PATH=/home/chaos/.cache/dxvk",
+            "EDITOR=nano",
+            "GSK_RENDERER=ngl",
+            "LC_TIME=ru_RU.UTF-8",
+            "MANGOHUD_CONFIGFILE=/home/chaos/tmp/mh",
+            "MESA_VK_WSI_PRESENT_MODE=immediate",
+            "OBS_PLUGINS_DATA_PATH=/usr/share/obs/obs-plugins",
+            "OBS_PLUGINS_PATH=/lib/obs-plugins",
+            "QT_QPA_PLATFORMTHEME=qt5ct",
+            "QT_WAYLAND_DISABLE_WINDOWDECORATION=1",
+            "RADV_TEX_ANISO=16",
+            "VKBASALT_CONFIG_FILE=/home/chaos/tmp/vkBasalt.conf",
+            "VKD3D_CONFIG=no_upload_hvv",
+            "VKD3D_DEBUG=none"
+        ]
+    },
+    "/etc/fstab": {
+        "append": [
+            "LABEL=alisa /mnt/alisa ext4 defaults,noatime,nofail 0 2",
+            "LABEL=larka /mnt/larka ext4 defaults,noatime,nofail 0 2",
+            "LABEL=void /mnt/void ext4 defaults,noatime,nofail 0 2",
+            "LABEL=xxx1 /mnt/xxx1 ext4 defaults,noatime,nofail 0 2",
+            "LABEL=xxx2 /mnt/xxx2 ext4 defaults,noatime,nofail 0 2"
+        ],
+        "replace": [
+            [
+                "UUID=c4670219-25bc-42ca-a942-a06f11565297 / ext4 defaults 0 1",
+                "UUID=c4670219-25bc-42ca-a942-a06f11565297 / ext4 defaults,noatime 0 1"
+            ]
+        ]
+    },
+    "/etc/rc.local": {
+        "append": [
+            "cpupower frequency-set -g performance"
+        ]
+    },
+    "/etc/security/limits.conf": {
+        "append": [
+            "* hard nofile 524288",
+            "* soft nofile 524288"
+        ]
+    },
+    "/etc/sv/zramen/conf": {
+        "append": [
+            "export ZRAM_MAX_SIZE=16384",
+            "export ZRAM_SIZE=100"
+        ]
+    },
+    "/root/.bash_history": {
+        "append": [
+            "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json check_lines",
+            "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json rebuild",
+            "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id='jill'",
+            "grub-mkconfig -o /boot/grub/grub.cfg"
+        ]
+    },
+    "/usr/lib/udev/hwdb.d/20-kbd.hwdb": {
+        "append": [
+            "evdev:name:HID 1d57:ad03 Consumer Control:*",
+            " KEYBOARD_KEY_c00cd=volumeup",
+            " KEYBOARD_KEY_c0223=volumedown",
+            "",
+            "evdev:name:SONiX USB Keyboard:*",
+            " KEYBOARD_KEY_70044=volumedown",
+            " KEYBOARD_KEY_70045=volumeup",
+            " KEYBOARD_KEY_70049=rightctrl",
+            " KEYBOARD_KEY_7004b=pagedown",
+            " KEYBOARD_KEY_7004d=pageup",
+            " KEYBOARD_KEY_7004e=end",
+            " KEYBOARD_KEY_700e4=insert"
+        ]
+    },
+    "/usr/lib/udev/rules.d/99-8bitdo-xinput.rules": {
+        "append": [
+            "ACTION==\"add\", ATTRS{idVendor}==\"2dc8\", ATTRS{idProduct}==\"3106\", RUN+=\"/sbin/modprobe xpad\", RUN+=\"/bin/sh -c 'echo 2dc8 3106 > /sys/bus/usb/drivers/xpad/new_id'\""
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "/root/.bash_history": {
+        "append": [
+            "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/nixos/polina_root.json rebuild",
+            "nix-collect-garbage -d",
+            "nixos-generate-config",
+            "NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild boot --upgrade"
+        ]
+    }
+}

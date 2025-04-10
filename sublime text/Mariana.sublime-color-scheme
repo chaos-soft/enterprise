@@ -1,6 +1,10 @@
 {
     "variables":
     {
-        "blue3": "hsl(210, 15%, 13%)",
+        "--background": "white",
+        "--foreground": "black",
+        "blue3": "#242933",
+        "nord0": "#242933",
+        "white3": "#eceff4",
     },
 }

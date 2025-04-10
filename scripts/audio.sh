@@ -1,3 +1,4 @@
+#!/bin/bash
 pkill pw-loopback
 sleep 2
 

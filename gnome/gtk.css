@@ -1,3 +1,10 @@
+#pulseaudio-button,
+.xfce4-panel,
+.xfce4-panel .tasklist .toggle {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 textview,
 textview > * {
   background-color: #3d4455;
@@ -5,9 +12,32 @@ textview > * {
 
 * {
   font-weight: normal;
+  outline-style: none;
 }
 
 tooltip {
   opacity: 0;
+}
+
+.genmon_value {
+  font-size: 10.2pt;
+}
+
+.xfce4-panel .tasklist {
+  /* -XfceTasklist-max-button-length: 460; */
+  /* -XfceTasklist-min-button-length: 460; */
+}
+
+.xfce4-panel .tasklist .toggle {
+  border: 1px solid transparent;
+  padding: 0 5px;
+}
+
+.xfce4-panel .tasklist .toggle:checked {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.xfce4-panel .tasklist .toggle:hover {
+  transition: none;
 }
 

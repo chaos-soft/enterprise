@@ -30,19 +30,20 @@ adb uninstall xxx
 dconf dump / > ~/tmp/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
 gd '/mnt/larka/tmp/tmp.txt' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
+gd polina.json <(sort_json.py polina.json)
 git clone --branch dev https://github.com/chaos-soft/enterprise.git
 gsettings get org.gnome.shell app-picker-layout
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
 ls -la --time-style=long-iso
+magick xxx.jpg                             -crop 2000x2000+590+1100 +repage -strip -quality 85 xxx.jpg
+magick xxx.jpg -gravity Center -rotate -90 -crop 3024x2800+0+0      +repage -strip -quality 85 xxx.jpg
 nmap -A -T4 localhost
 npm create vite@latest
-scp -pr ~/Documents/python/velvet/store/api/articles/57.json polina:/root/python/velvet/store/api/articles/
-sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
-ssh -D localhost:9150 polina
 ssh polina 'cd ~/python/miranda/ && docker compose -f dc.playwright.yml up -d'
 ssh polina 'cd ~/python/miranda/ && docker compose up -d'
 ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml restart'
+sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
 sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
 sudo dmesg | grep BAR
 sudo mkdir -p .Trash-1000/{expunged,files,info} && sudo chown -R $USER:$USER .Trash-1000
@@ -54,8 +55,8 @@ xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080 --scale 1x1
 xrandr --output HDMI-A-0 --mode 1920x1080 --panning 3840x2160 --scale 2x2
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
 youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oSr3a6JLHUs
-yt-dlp --no-mtime --proxy socks5://127.0.0.1:9150 https://www.youtube.com/embed/45HMKmDuXEE
-yt-dlp --no-mtime https://www.youtube.com/embed/45HMKmDuXEE
+~/Downloads/yt-dlp_linux --no-mtime --proxy socks5://127.0.0.1:9150 https://www.youtube.com/embed/45HMKmDuXEE
+~/Downloads/yt-dlp_linux --no-mtime https://www.youtube.com/embed/45HMKmDuXEE
 
 ./xbps-src -a i686 pkg obs-vkcapture32
 ./xbps-src binary-bootstrap
@@ -64,19 +65,18 @@ git clone --depth=1 https://github.com/void-linux/void-packages.git
 sudo xbps-install --repository=hostdir/binpkgs obs-vkcapture
 sudo xbps-install --repository=hostdir/binpkgs/multilib/ obs-vkcapture32-32bit
 
-sudo fstrim --fstab -v
-sudo npm install standard --global
-sudo vkpurge rm all
-sudo xbps-install -Su
-sudo xbps-install `cat ~/Documents/enterprise/void/install`
-sudo xbps-install `cat ~/Documents/enterprise/void/multilib\ nonfree`
-sudo xbps-reconfigure -f glibc-locales
-sudo xbps-reconfigure -f linux6.6
-sudo xbps-remove -oO
-sudo xbps-remove `cat ~/Documents/enterprise/void/remove`
+fstrim --fstab -v
+npm install standard
+vkpurge rm all
+xbps-install $(cat /home/chaos/Documents/enterprise/void/install)
+xbps-install $(cat /home/chaos/Documents/enterprise/void/multilib\ nonfree)
+xbps-install -Su
 xbps-query -s gamemode
+xbps-reconfigure -f glibc-locales
+xbps-reconfigure -f linux6.12
+xbps-remove $(cat /home/chaos/Documents/enterprise/void/remove)
+xbps-remove -oO
 
-curl -o sitemap.xml http://localhost/sitemap
 dc -f dc.nginx.yml up
 dc exec -T db mysql -uroot -proot velvet < sql
 dc exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
@@ -84,7 +84,6 @@ dc exec velvet coverage report -m
 dc exec velvet coverage run --source='.' manage.py test blog bookmarks
 dc exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o store/backup.json && sudo chown -R $USER:$USER store/
 dc exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-dc exec velvet python manage.py generatehtml && sudo chown -R $USER:$USER store/
 dc exec velvet python manage.py loaddata store/backup.json
 dc restart velvet
 docker build -t miranda:20240328 .
@@ -95,6 +94,3 @@ docker save miranda | gzip > miranda.tar.gz
 docker system df
 
 curl cheat.sh/python
-loginctl poweroff
-loginctl reboot
-loginctl suspend

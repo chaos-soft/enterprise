@@ -1,6 +1,3 @@
-[org/gnome/desktop/background]
-picture-uri='file:///home/chaos/Pictures/Screenshots/Screenshot from 2021-04-20 01-58-49.png'
-
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'us'), ('xkb', 'ru')]
 xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch', 'grp:caps_toggle']
@@ -207,7 +204,7 @@ show-directory-item-counts='local-only'
 show-hidden-files=true
 show-icon-text='never'
 show-icons-in-list-view=true
-show-image-thumbnails='local-only'
+show-image-thumbnails='never'
 
 [org/mate/caja/window-state]
 side-pane-view='places'

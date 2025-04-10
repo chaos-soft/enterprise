@@ -1,7 +1,6 @@
+#!/bin/bash
 ffmpeg \
     -loglevel quiet -stats \
-    -i srt://192.168.1.168:9000  \
-    -c copy \
-    -f flv rtmp://msk.goodgame.ru:1940/live/xxx \
-    -c copy \
-    /mnt/polina/tmp/encoder.ts
+    -i http://192.168.1.168/0.ts \
+    -bsf:v h264_metadata=video_full_range_flag=1 -c copy -f flv xxx \
+    -bsf:v h264_metadata=video_full_range_flag=1 -c copy "/mnt/alisa/tmp/видео/$(date +'%Y%m%d-%H%M%S').ts"
