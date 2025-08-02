@@ -3,8 +3,8 @@
     {
         "--background": "white",
         "--foreground": "black",
-        "blue3": "#242933",
-        "nord0": "#242933",
+        "blue3": "#252a33",
+        "nord0": "#252a33",
         "white3": "#eceff4",
     },
 }

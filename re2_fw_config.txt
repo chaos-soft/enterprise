@@ -1,0 +1,10 @@
+Camera_DisableVignette=true
+Camera_Enabled=true
+FreeCam_DisableMoveKey_V2=221
+FreeCam_LockKey_V2=219
+FreeCam_MoveDownKey_V2=16
+FreeCam_MoveUpKey_V2=32
+FreeCam_RotationSpeed=0.050000
+FreeCam_Speed=0.050000
+FreeCam_SpeedModifier=1.000000
+FreeCam_ToggleKey_V2=220

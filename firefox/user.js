@@ -31,7 +31,7 @@ user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 user_pref("network.proxy.autoconfig_url", "file:///home/chaos/Documents/enterprise/firefox/file.pac");
 user_pref("network.proxy.type", 2);
 user_pref("network.trr.custom_uri", "https://doh.libredns.gr/dns-query");
-user_pref("network.trr.mode", 2);
+user_pref("network.trr.mode", 5);
 user_pref("network.trr.uri", "https://doh.libredns.gr/dns-query");
 user_pref("permissions.default.camera", 2);
 user_pref("permissions.default.desktop-notification", 2);

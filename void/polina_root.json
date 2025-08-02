@@ -21,8 +21,6 @@
             "LC_TIME=ru_RU.UTF-8",
             "MANGOHUD_CONFIGFILE=/home/chaos/tmp/mh",
             "MESA_VK_WSI_PRESENT_MODE=immediate",
-            "OBS_PLUGINS_DATA_PATH=/usr/share/obs/obs-plugins",
-            "OBS_PLUGINS_PATH=/lib/obs-plugins",
             "QT_QPA_PLATFORMTHEME=qt5ct",
             "QT_WAYLAND_DISABLE_WINDOWDECORATION=1",
             "RADV_TEX_ANISO=16",
@@ -65,6 +63,7 @@
     },
     "/root/.bash_history": {
         "append": [
+            "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json backup",
             "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json check_lines",
             "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json rebuild",
             "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id='jill'",
@@ -84,7 +83,10 @@
             " KEYBOARD_KEY_7004b=pagedown",
             " KEYBOARD_KEY_7004d=pageup",
             " KEYBOARD_KEY_7004e=end",
-            " KEYBOARD_KEY_700e4=insert"
+            " KEYBOARD_KEY_700e4=insert",
+            "",
+            "evdev:name:USB Optical Mouse:*",
+            " KEYBOARD_KEY_90004=0x111"
         ]
     },
     "/usr/lib/udev/rules.d/99-8bitdo-xinput.rules": {

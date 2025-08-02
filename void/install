@@ -3,26 +3,28 @@ breeze-cursors
 caja
 calf
 certbot
-corectrl
 cpupower
 curl
 docker
 docker-buildx
 docker-compose
-easyeffects
 evtest
 ffmpeg
 firejail
+galculator
 git
 gitg
-gnome
 gnome-disk-utility
 godot
 gparted
 gthumb
 htop
 hwloc
+iftop
 ImageMagick
+imwheel
+inkscape
+LACT
 libjack-pipewire
 lsp-plugins
 MangoHud
@@ -47,12 +49,14 @@ sublime-text4
 telegram-desktop
 tor
 torbrowser-launcher
+torsocks
 vkBasalt
 vkBasalt-32bit
 Vulkan-Tools
 x42-plugins
-xfce4-genmon-plugin
+xdg-utils
 xfce4-screenshooter
+yad
 zramen
 
 Carla
@@ -66,6 +70,10 @@ feh
 i3
 picom
 rofi
+
+qt5-wayland
+sway
+wtype
 
 xdotool
 xev
@@ -87,3 +95,8 @@ qemu-system-amd64
 
 blender
 python3-yaml
+
+libva-utils
+mesa-vaapi
+
+qtile-wayland

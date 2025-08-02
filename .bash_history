@@ -11,7 +11,7 @@ find . ! -user $USER -o ! -group $USER
 find . -newermt '2017-12-01 00:00:00' ! -newermt '2019-05-01 00:00:00'
 find . -newermt '2023-05-01 00:00:00' ! -newermt '2023-11-01 00:00:00'
 find . -type d -print0 | xargs -0 chmod 0755
-find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd > /mnt/larka/tmp/tmp.txt
+find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd > /mnt/larka/tmp/игры/xxx.txt
 find . -type f -print0 | xargs -0 chmod 0644
 find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM%TS.png\n" | sh
 find . -type f -printf "mv -i '%f' %TY%Tm%Td-%TH%TM.png\n" | sh
@@ -23,13 +23,14 @@ sudo find . -type d -empty -print -delete
 
 GIT_ASKPASS= git push --all --dry-run origin
 GTK_DEBUG=interactive thunar
-WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine winecfg
+WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine64 winecfg
 adb install -r xxx
 adb shell pm list packages
 adb uninstall xxx
+curl -LOJ --socks5 127.0.0.1:9150 xxx
 dconf dump / > ~/tmp/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
-gd '/mnt/larka/tmp/tmp.txt' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
+gd '/mnt/larka/tmp/игры/xxx.txt' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
 gd polina.json <(sort_json.py polina.json)
 git clone --branch dev https://github.com/chaos-soft/enterprise.git
 gsettings get org.gnome.shell app-picker-layout
@@ -51,8 +52,6 @@ sudo mkdir -p games tmp && sudo chown -R $USER:$USER games tmp
 sudo netstat -tulpn
 sudo tar --exclude=./lost+found -zcf ~/tmp/void.tar.gz .
 sudo tar -xzvf ~/tmp/void.tar.gz
-xrandr --output HDMI-A-0 --mode 1920x1080 --panning 1920x1080 --scale 1x1
-xrandr --output HDMI-A-0 --mode 1920x1080 --panning 3840x2160 --scale 2x2
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
 youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oSr3a6JLHUs
 ~/Downloads/yt-dlp_linux --no-mtime --proxy socks5://127.0.0.1:9150 https://www.youtube.com/embed/45HMKmDuXEE

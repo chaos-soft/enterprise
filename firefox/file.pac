@@ -8,16 +8,21 @@ function FindProxyForURL (url, host) {
     host === 'seasonvar.ru' ||
     host === 'spankbang.com' ||
     host === 'www.deviantart.com' ||
+    host === 'www.google.com' ||
     host === 'www.imagefap.com' ||
     host === 'www.kindgirls.com' ||
     host === 'www.pornbb.org' ||
     host === 'www.xvideos.com' ||
+    host === 'www.youtube-nocookie.com' ||
     host === 'xhamster.com' ||
+    host === 'youtube.com' ||
+    host === 'yt3.googleusercontent.com' ||
     shExpMatch(host, '*.dafont.com') ||
     shExpMatch(host, '*.eporner.com') ||
     shExpMatch(host, '*.ggpht.com') ||
     shExpMatch(host, '*.googlevideo.com') ||
     shExpMatch(host, '*.intporn.com') ||
+    shExpMatch(host, '*.jtvnw.net') ||
     shExpMatch(host, '*.pornxp.cc') ||
     shExpMatch(host, '*.rutracker.cc') ||
     shExpMatch(host, '*.spankbang.com') ||
