@@ -8,6 +8,7 @@ function FindProxyForURL (url, host) {
     host === 'seasonvar.ru' ||
     host === 'spankbang.com' ||
     host === 'www.deviantart.com' ||
+    host === 'www.digitalocean.com' ||
     host === 'www.google.com' ||
     host === 'www.imagefap.com' ||
     host === 'www.kindgirls.com' ||

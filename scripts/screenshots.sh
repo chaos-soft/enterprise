@@ -36,3 +36,13 @@
 # mpv --screenshot-format=png '/mnt/xxx2/tmp/нарезки/far cry 5/2018/20181106-010218.mp4' --pause --start=00:00:27 &
 # mpv --no-audio --start=00:03:01.717 --frames=1 '/mnt/alisa/memory card/cinelerra/fc5/hevc18.mp4' --o='/mnt/alisa/memory card/cinelerra/fc5/1-hevc18.png'
 # mpv --no-audio --start=00:11:18.400 --frames=1 '/mnt/alisa/memory card/cinelerra/fc5/hevc18.mp4' --o='/mnt/alisa/memory card/cinelerra/fc5/2-hevc18.png'
+
+# mpv --screenshot-format=png '/mnt/larka/tmp/нарезки/2024/sh2/3.ts' --pause --start=00:00:06 &
+# mpv --screenshot-format=png '/mnt/larka/tmp/нарезки/2025/sh2/9.ts' --pause --start=00:02:51 &
+# mpv --no-audio --start=00:00:22.717 --frames=1 '/mnt/alisa/memory card/cinelerra/sh2/hevc18.mp4' --o='/mnt/alisa/memory card/cinelerra/sh2/1-hevc18.png'
+# mpv --no-audio --start=00:07:49.850 --frames=1 '/mnt/alisa/memory card/cinelerra/sh2/hevc18.mp4' --o='/mnt/alisa/memory card/cinelerra/sh2/2-hevc18.png'
+
+# mpv --no-audio --start=00:12:01.617 --frames=1 '/mnt/xxx2/tmp/tmp/encoder/xxx-1518960852.flv' --o='/mnt/alisa/memory card/изображения/скриншоты/история/xxx-1518960852.png'
+# mpv --no-audio --start=02:03:50.008 --frames=1 '/mnt/xxx2/tmp/tmp/ff15/20180309-024855.mp4'   --o='/mnt/alisa/memory card/изображения/скриншоты/история/20180309-024855.png'
+
+# mpv --no-audio --start=04:13:31.067 --frames=1 '/mnt/alisa/tmp/tmp/2023-03-30 23-54-42.ts' --o='/mnt/alisa/memory card/изображения/скриншоты/история/20230330-235442.png'

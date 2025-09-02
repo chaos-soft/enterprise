@@ -24,6 +24,7 @@
             "QT_QPA_PLATFORMTHEME=qt5ct",
             "QT_WAYLAND_DISABLE_WINDOWDECORATION=1",
             "RADV_TEX_ANISO=16",
+            "TERMINAL=xfce4-terminal",
             "VKBASALT_CONFIG_FILE=/home/chaos/tmp/vkBasalt.conf",
             "VKD3D_CONFIG=no_upload_hvv",
             "VKD3D_DEBUG=none"
@@ -33,7 +34,6 @@
         "append": [
             "LABEL=alisa /mnt/alisa ext4 defaults,noatime,nofail 0 2",
             "LABEL=larka /mnt/larka ext4 defaults,noatime,nofail 0 2",
-            "LABEL=void /mnt/void ext4 defaults,noatime,nofail 0 2",
             "LABEL=xxx1 /mnt/xxx1 ext4 defaults,noatime,nofail 0 2",
             "LABEL=xxx2 /mnt/xxx2 ext4 defaults,noatime,nofail 0 2"
         ],
@@ -67,7 +67,8 @@
             "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json check_lines",
             "/home/chaos/Documents/python/tools/polina.py /home/chaos/Documents/enterprise/void/polina_root.json rebuild",
             "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id='jill'",
-            "grub-mkconfig -o /boot/grub/grub.cfg"
+            "grub-mkconfig -o /boot/grub/grub.cfg",
+            "xbps-install -u xbps"
         ]
     },
     "/usr/lib/udev/hwdb.d/20-kbd.hwdb": {

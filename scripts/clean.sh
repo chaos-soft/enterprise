@@ -1,18 +1,19 @@
 #!/bin/bash
 list=(
-    *amescope*
-    *arole*
-    *asyeffects*
-    *aybar*
-    *fce4-genmon-plugin*
-    *hunar*
-    *inagre*
-    *irefox*
-    *nome*
-    *orectrl*
-    *ousepad*
-    *volution*
+    *corectrl*
+    *easyeffects*
+    *evolution*
+    *firefox*
+    *gamescope*
+    *gnome*
+    *mednafen*
+    *mousepad*
+    *parole*
+    *thunar*
+    *vinagre*
+    *waybar*
     *wine*
+    *xfce4-genmon-plugin*
     *yt-dlp*
     grim
     mate*
@@ -21,5 +22,5 @@ list=(
 
 for v in ${list[@]}
 do
-    find ~ -depth -name $v -print 2>/dev/null
+    find ~ -depth -iname $v -print 2>/dev/null
 done

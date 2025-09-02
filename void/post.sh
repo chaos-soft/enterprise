@@ -56,5 +56,9 @@ xfconf-query -n -c xsettings         -p /Net/ThemeName                -t string 
 xfconf-query -n -c xsettings         -p /Xft/DPI                      -t int    -s 96
 xfconf-query -n -c xsettings         -p /Xft/HintStyle                -t string -s 'hintslight'
 
+gsettings set org.qdre.compositor exclusive-full-screen 'Do not allow'
+gsettings set org.qdre.compositor vsync OpenGL
+gsettings set org.qdre.compositor zoom-key Off
+
 git config --global user.name 'chaos-soft'
 git config --global user.email mail@57st.su

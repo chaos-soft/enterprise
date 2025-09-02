@@ -1,14 +1,19 @@
 # Template file for 'qdre'
 pkgname=qdre
-version=b6dd0b89
+version=35784659e9898c90bf08914328f8d6e26a04caf2
 revision=1
 build_style=cmake
+configure_args="-DAPPS_QDRE_Viewer=OFF -DCMAKE_BUILD_TYPE=Release"
 hostmakedepends="pkg-config"
-makedepends="gnome-menus-devel
- kcrash-devel
- xcb-util-renderutil-devel
- xcb-util-wm-devel"
-short_desc="Qt Desktop Regular Environment (early development)"
-maintainer="chaos-soft <mail@57st.net>"
+makedepends="qt6-base-private-devel"
+short_desc="Lightweight X11 compositor with dconf settings"
+maintainer="chaos-soft <mail@57st.su>"
 license="MIT"
 homepage="https://gitlab.com/zaps166/qdre"
+distfiles="https://gitlab.com/zaps166/qdre/-/archive/$version/qdre-$version.tar.gz"
+checksum=644f7dc2a92d78dda8d9eb2154cb4b485239e68804b2c21cb2a1e754c860c7e0
+
+post_install() {
+    rm -r ${DESTDIR}/usr/include
+    rm -r ${DESTDIR}/usr/lib
+}

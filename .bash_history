@@ -21,7 +21,6 @@ find ~ -type f -executable ! -path '*/Steam/*' ! -path '*/void-packages/*'
 sudo find . -depth -name *__pycache__* -print -exec rm -rf {} +
 sudo find . -type d -empty -print -delete
 
-GIT_ASKPASS= git push --all --dry-run origin
 GTK_DEBUG=interactive thunar
 WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine64 winecfg
 adb install -r xxx
@@ -41,9 +40,6 @@ magick xxx.jpg                             -crop 2000x2000+590+1100 +repage -str
 magick xxx.jpg -gravity Center -rotate -90 -crop 3024x2800+0+0      +repage -strip -quality 85 xxx.jpg
 nmap -A -T4 localhost
 npm create vite@latest
-ssh polina 'cd ~/python/miranda/ && docker compose -f dc.playwright.yml up -d'
-ssh polina 'cd ~/python/miranda/ && docker compose up -d'
-ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml restart'
 sudo certbot certonly --manual --agree-tos -m xxx -d xxx --no-eff-email
 sudo dd if=/dev/zero of=/dev/sdc bs=1M count=10
 sudo dmesg | grep BAR
@@ -61,8 +57,8 @@ youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oS
 ./xbps-src binary-bootstrap
 ./xbps-src pkg obs-vkcapture
 git clone --depth=1 https://github.com/void-linux/void-packages.git
-sudo xbps-install --repository=hostdir/binpkgs obs-vkcapture
-sudo xbps-install --repository=hostdir/binpkgs/multilib/ obs-vkcapture32-32bit
+sudo xbps-install -f --repository=hostdir/binpkgs obs-vkcapture
+sudo xbps-install -f --repository=hostdir/binpkgs/multilib/ obs-vkcapture32-32bit
 
 fstrim --fstab -v
 npm install standard
@@ -89,7 +85,17 @@ docker build -t miranda:20240328 .
 docker builder prune
 docker exec -it vv_velvet_1 bash
 docker images && docker network ls && docker ps -a && docker volume list
+docker load -i miranda.tar.gz
 docker save miranda | gzip > miranda.tar.gz
 docker system df
+
+apt autoremove --purge
+apt install $(cat ~/server/install)
+apt update && apt upgrade
+netstat -tulpn
+ssh polina 'cd ~/python/miranda/ && docker compose stop && docker compose rm -f'
+ssh polina 'cd ~/python/miranda/ && docker compose up -d'
+ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml up -d'
+ssh polina 'sed -i "s/xxx/xxx/" ~/python/velvet/store/html/articles/57.html'
 
 curl cheat.sh/python

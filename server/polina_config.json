@@ -1,7 +1,0 @@
-{
-    "append": {
-        "/etc/ssh/sshd_config": [
-            "PasswordAuthentication no"
-        ]
-    }
-}

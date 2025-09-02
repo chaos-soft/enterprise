@@ -12,7 +12,7 @@ makedepends="Vulkan-Headers
  wayland-devel"
 short_desc="OBS Linux Vulkan/OpenGL game capture"
 maintainer="chaos-soft <mail@57st.su>"
-license="GPL-2.0-or-later"
+license="GPL-2.0-only"
 homepage="https://github.com/nowrep/obs-vkcapture"
 distfiles="https://github.com/nowrep/obs-vkcapture/archive/refs/tags/v$version.tar.gz"
 checksum=2bc00d2848fdb00fb00bfe34a3cde8dc7f0cec4e7c37c69f75957290bc5c2bc5
