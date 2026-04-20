@@ -1,0 +1,5 @@
+master:
+  hosts:
+    polina:
+      ansible_host: polina
+      ansible_python_interpreter: /usr/bin/python3

@@ -4,7 +4,7 @@ from subprocess import run
 import sys
 
 IF: Path = Path('/mnt/alisa/memory card/резервные копии/игры/dark souls')
-OF: str = ('/mnt/larka/games/steam/steamapps/compatdata/952060'
+OF: str = ('/mnt/larka/games/.local/share/Steam/steamapps/compatdata/374320'
            '/pfx/drive_c/users/steamuser/AppData/Roaming/DarkSoulsIII/01100001020299c3/DS30000.sl2')
 
 saves: dict[str, Path | str] = {}
@@ -32,9 +32,9 @@ saves['танцовщица'] = IF / 'танцовщица/DS30000.sl2'
 saves['хранители бездны'] = IF / 'хранители бездны/DS30000.sl2'
 
 r = run(['rofi', '-dmenu', '-matching', 'prefix'], capture_output=True, input='\n'.join(saves.keys()).encode('utf-8'))
-k = r.stdout.decode('utf-8').rstrip()
-if k in saves:
-    args = ['install', '-pDvm644', str(saves[k]), OF]
+key = r.stdout.decode('utf-8').rstrip()
+if key in saves:
+    args = ['install', '-pDvm644', str(saves[key]), OF]
     print(run(args))
 else:
     print('empty')

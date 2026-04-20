@@ -1,0 +1,91 @@
+(defpoll status  :interval "1s" "~/Documents/enterprise/scripts/status_command.sh")
+(defpoll windows :interval "1s" "~/Documents/enterprise/scripts/niri_windows.py")
+
+(defwidget status []
+  (box
+    :class "status"
+    (eventbox
+      :cursor "pointer"
+      :onclick "niri msg action focus-workspace-down"
+      :onrightclick "niri msg action focus-workspace-up"
+      (label :text status)
+    )
+  )
+)
+
+(defwidget windows []
+  (box
+    :class "windows"
+    :hexpand true
+    (for v in windows
+      (eventbox
+        :cursor "pointer"
+        :onclick "niri msg action focus-window --id ${v.id}"
+        :onrightclick "niri msg action close-window --id ${v.id}"
+        (label
+          :class {v.is_focused ? "focused": ""}
+          :text {v.title}
+          :xalign "0"
+        )
+      )
+    )
+  )
+)
+
+(defwidget layout []
+  (box
+    :space-evenly false
+    (windows)
+    (status)
+  )
+)
+
+(defwindow bar
+  :exclusive true
+  :geometry (geometry
+    :anchor "top center"
+    :height "20px"
+    :width "100%"
+    :x "0%"
+    :y "0%"
+  )
+  :monitor 0
+  (layout)
+)
+
+(defvar chat_selected 0)
+(defvar message "")
+
+(defwidget chat_layout []
+  (eventbox
+    :cursor "none"
+    (stack
+      :same-size true
+      :selected chat_selected
+      :transition "slideup"
+      (box)
+      (literal :content message)
+    )
+  )
+)
+
+(defwidget chat []
+  (box
+    :class "chat"
+    :halign "center"
+    (chat_layout)
+  )
+)
+
+(defwindow chat
+  :geometry (geometry
+    :anchor "bottom center"
+    :height "60px"
+    :width "100%"
+    :x "0%"
+    :y "0%"
+  )
+  :monitor 0
+  :stacking "overlay"
+  (chat)
+)

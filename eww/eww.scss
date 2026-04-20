@@ -1,0 +1,32 @@
+* {
+  all: unset;
+}
+
+.bar {
+  .status {
+    padding: 0 0.5em;
+  }
+
+  .windows {
+    * {
+      padding: 0 0.5em;
+    }
+
+    .focused {
+      background-color: #4c566a;
+      border-radius: 4px;
+    }
+  }
+
+  background-color: transparent;
+  color: #d8dee9;
+}
+
+.chat {
+  label {
+    color: white;
+    font: bold 16px 'helvetica neue', sans-serif;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  }
+}
+

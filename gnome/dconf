@@ -5,11 +5,13 @@ xkb-options=['terminate:ctrl_alt_bksp,grp_led:scroll', 'lv3:rwin_switch', 'grp:c
 [org/gnome/desktop/interface]
 clock-show-weekday=true
 color-scheme='prefer-dark'
+cursor-theme='Breeze_Contrast'
 document-font-name='Sans 10.19921875'
 enable-hot-corners=false
 font-antialiasing='grayscale'
 font-hinting='slight'
 font-name='Sans 10.19921875'
+gtk-theme='Nordic-bluish-accent'
 monospace-font-name='Monospace 10'
 
 [org/gnome/desktop/media-handling]
@@ -49,8 +51,12 @@ cycle-windows=['<Control>Tab']
 cycle-windows-backward=['<Shift><Control>Tab']
 switch-windows=@as []
 switch-windows-backward=@as []
+toggle-fullscreen=['<Super>f']
 
 [org/gnome/desktop/wm/preferences]
+action-right-click-titlebar='none'
+button-layout=':'
+resize-with-right-button=true
 titlebar-font='Sans 10.19921875'
 
 [org/gnome/gitg/preferences/interface]
@@ -177,6 +183,9 @@ toggle-quick-settings=@as []
 [org/gnome/system/location]
 enabled=false
 
+[org/gnome/tweaks]
+show-extensions-notice=false
+
 [org/gtk/settings/file-chooser]
 date-format='with-time'
 show-hidden=true
@@ -196,7 +205,7 @@ default-visible-columns=['name', 'size', 'owner', 'group', 'permissions', 'date_
 confirm-trash=false
 date-format='iso'
 default-folder-viewer='list-view'
-default-sort-order='type'
+default-sort-order='name'
 executable-text-activation='display'
 preview-sound='never'
 show-backup-files=true
@@ -214,6 +223,11 @@ start-with-toolbar=false
 [org/mate/desktop/media-handling]
 automount-open=false
 autorun-never=true
+
+[org/qdre/compositor]
+exclusive-full-screen='Do not allow'
+vsync='OpenGL'
+zoom-key='Off'
 
 [system/locale]
 region='ru_RU.UTF-8'

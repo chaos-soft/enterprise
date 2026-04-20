@@ -1,0 +1,90 @@
+-
+  gather_facts: false
+  hosts: master
+  remote_user: root
+  tasks:
+
+  - name: Обновление
+    ansible.builtin.apt:
+      name: "*"
+      state: latest
+      update_cache: true
+
+  - name: Установка базовых пакетов
+    ansible.builtin.apt:
+      install_recommends: false
+      pkg:
+      - ca-certificates
+      - certbot
+      - curl
+      - gpg
+      - htop
+      - mc
+      - python3-apt
+      - python3-venv
+      - python3-yaml
+      - rsync
+      - ufw
+
+  - name: Docker-ключ
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+
+  - name: Docker-репозиторий
+    ansible.builtin.apt_repository:
+      repo: "deb https://download.docker.com/linux/debian bookworm stable"
+
+  - name: Установка Docker-пакетов
+    ansible.builtin.apt:
+      install_recommends: false
+      state: latest
+      update_cache: true
+      pkg:
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
+
+  - name: Запуск Docker
+    ansible.builtin.service:
+      enabled: true
+      name: docker
+      state: started
+
+  - name: Добавление пользователя xxx
+    ansible.builtin.user:
+      group: docker
+      name: xxx
+      password: xxx
+      shell: /bin/bash
+
+  - name: Allow outgoing and enable UFW
+    community.general.ufw:
+      direction: outgoing
+      policy: allow
+      state: enabled
+
+  - name: Настройка UFW. 80
+    community.general.ufw:
+      port: "80"
+      proto: tcp
+      rule: allow
+
+  - name: Настройка UFW. 443
+    community.general.ufw:
+      port: "443"
+      proto: tcp
+      rule: allow
+
+  - name: Настройка UFW. 1935
+    community.general.ufw:
+      port: "1935"
+      proto: tcp
+      rule: allow
+
+  - name: Настройка UFW. SSH
+    community.general.ufw:
+      port: "22"
+      proto: tcp
+      rule: allow

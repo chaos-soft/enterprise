@@ -1,6 +1,15 @@
+7zip-unrar
+ImageMagick
+LACT
+MangoHud
+MangoHud-32bit
+Vulkan-Tools
 android-tools
+black
+blender
 breeze-cursors
 btop
+cage
 caja
 calf
 certbot
@@ -10,25 +19,31 @@ docker
 docker-buildx
 docker-compose
 evtest
+eww
 ffmpeg
 firejail
 galculator
+gallery-dl
+gamescope
+geany-plugins
+geany-plugins-extra
 git
 gitg
+gnome-contacts
 gnome-disk-utility
+gnome-tweaks
 godot
 gparted
 gthumb
 htop
 hwloc
-ImageMagick
 imwheel
 inkscape
-LACT
+jq
 libjack-pipewire
+linux6.18
 lsp-plugins
-MangoHud
-MangoHud-32bit
+lxappearance
 mc
 mednaffe
 mesa-vulkan-radeon
@@ -43,7 +58,10 @@ openmw
 pavucontrol
 python3-flake8
 python3-mypy
+python3-yaml
 ranger
+rsync
+ssr
 steam
 sublime-text4
 telegram-desktop
@@ -52,9 +70,11 @@ torbrowser-launcher
 torsocks
 vkBasalt
 vkBasalt-32bit
-Vulkan-Tools
+wiremix
+wkhtmltopdf
 x42-plugins
 xdg-utils
+xfce4-genmon-plugin
 xfce4-screenshooter
 yad
 zramen
@@ -70,8 +90,10 @@ feh
 i3
 picom
 rofi
+xrdb
 
 qt5-wayland
+sov
 sway
 wtype
 
@@ -83,6 +105,7 @@ xsel
 
 obs
 obs-plugin-browser-bin
+xdg-desktop-portal-wlr
 
 libdrm-32bit
 libgcc-32bit
@@ -93,10 +116,11 @@ mesa-dri-32bit
 edk2-ovmf
 qemu-system-amd64
 
-blender
-python3-yaml
-
 libva-utils
 mesa-vaapi
 
-qtile-wayland
+libdrm-test-progs
+niri
+wlrctl
+xdg-desktop-portal-gnome
+xwayland-satellite

@@ -1,20 +1,30 @@
 #!/bin/bash
 list=(
+    # *amd*
     *corectrl*
     *easyeffects*
     *evolution*
     *firefox*
     *gamescope*
+    *gdm*
     *gnome*
-    *mednafen*
+    *luanti*
+    *minetest*
     *mousepad*
+    *nexus*
     *parole*
-    *thunar*
+    *proton*
+    *qtile*
+    *ryubing*
+    *ryujinx*
+    *steam*
+    *umu*
     *vinagre*
+    *vlc*
     *waybar*
     *wine*
     *xfce4-genmon-plugin*
-    *yt-dlp*
+    *zeitgeist*
     grim
     mate*
     mc

@@ -1,0 +1,32 @@
+/etc/environment:
+  append: |
+
+/etc/ssh/sshd_config:
+  append: |
+    PasswordAuthentication no
+    PermitRootLogin no
+    PrintLastLog no
+    PrintMotd no
+
+/home/xxx/.bashrc:
+  append: |
+    $ps1
+
+/root/.bash_history:
+  append: |
+    /home/xxx/python/tools/polina.py /home/xxx/server/polina.yml backup
+    /home/xxx/python/tools/polina.py /home/xxx/server/polina.yml check_lines
+    /home/xxx/python/tools/polina.py /home/xxx/server/polina.yml rebuild
+    systemctl restart ssh
+
+/root/.bashrc:
+  append: |
+    $ps1
+
+variables:
+  $ps1: |
+    PS1='$? \[\e[1;32m\]\w\[\e[m\] $(date +%H:%M:%S) \$ '
+    alias cl='clear'
+    alias dc='docker compose'
+    alias ls='ls -la --time-style=long-iso'
+    alias lstc='ls -la --time-style=long-iso --time=creation'

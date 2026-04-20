@@ -4,7 +4,7 @@ grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\t
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '  ' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:alnum:]]  [[:alnum:]]' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:blank:]]$' .
-grep --color -rI --text 'HDR+' .
+grep --color -rIn --text 'HDR+' --include='*.py' .
 
 find . ! -perm 644 -type f -o ! -perm 755 -type d
 find . ! -user $USER -o ! -group $USER
@@ -29,13 +29,12 @@ adb uninstall xxx
 curl -LOJ --socks5 127.0.0.1:9150 xxx
 dconf dump / > ~/tmp/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
-gd '/mnt/larka/tmp/игры/xxx.txt' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
-gd polina.json <(sort_json.py polina.json)
+gallery-dl -D . --no-mtime --proxy socks5://127.0.0.1:9150 xxx
+gd '/mnt/larka/tmp/игры/' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
 git clone --branch dev https://github.com/chaos-soft/enterprise.git
 gsettings get org.gnome.shell app-picker-layout
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
-ls -la --time-style=long-iso
 magick xxx.jpg                             -crop 2000x2000+590+1100 +repage -strip -quality 85 xxx.jpg
 magick xxx.jpg -gravity Center -rotate -90 -crop 3024x2800+0+0      +repage -strip -quality 85 xxx.jpg
 nmap -A -T4 localhost
@@ -50,6 +49,7 @@ sudo tar --exclude=./lost+found -zcf ~/tmp/void.tar.gz .
 sudo tar -xzvf ~/tmp/void.tar.gz
 youtube-dl --skip-download https://www.youtube.com/watch?v=oSr3a6JLHUs
 youtube-dl -f best --external-downloader curl https://www.youtube.com/watch?v=oSr3a6JLHUs
+~/Downloads/yt-dlp_linux --no-mtime --proxy socks5://127.0.0.1:9150 -x https://www.youtube.com/watch?v=3K_H6Xxy3b8
 ~/Downloads/yt-dlp_linux --no-mtime --proxy socks5://127.0.0.1:9150 https://www.youtube.com/embed/45HMKmDuXEE
 ~/Downloads/yt-dlp_linux --no-mtime https://www.youtube.com/embed/45HMKmDuXEE
 
@@ -77,12 +77,12 @@ dc exec -T db mysql -uroot -proot velvet < sql
 dc exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
 dc exec velvet coverage report -m
 dc exec velvet coverage run --source='.' manage.py test blog bookmarks
-dc exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o store/backup.json && sudo chown -R $USER:$USER store/
+dc exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o /backup/b.json && sudo chown -R $USER:$USER backup/ store/
 dc exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
-dc exec velvet python manage.py loaddata store/backup.json
+dc exec velvet python manage.py loaddata /backup/backup.json
 dc restart velvet
 docker build -t miranda:20240328 .
-docker builder prune
+docker builder prune -f
 docker exec -it vv_velvet_1 bash
 docker images && docker network ls && docker ps -a && docker volume list
 docker load -i miranda.tar.gz
@@ -90,12 +90,14 @@ docker save miranda | gzip > miranda.tar.gz
 docker system df
 
 apt autoremove --purge
-apt install $(cat ~/server/install)
 apt update && apt upgrade
-netstat -tulpn
+chsh -s /bin/bash xxx
+ssh polina 'cd ~/python/miranda/ && docker compose exec miranda cat /tmp/miranda.log | grep -v INFO'
 ssh polina 'cd ~/python/miranda/ && docker compose stop && docker compose rm -f'
 ssh polina 'cd ~/python/miranda/ && docker compose up -d'
-ssh polina 'cd ~/python/velvet/ && docker compose -f dc.nginx.yml up -d'
+ssh polina 'cd ~/python/velvet/ && docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d'
+ssh polina 'cd ~/python/velvet/ && docker compose exec nginx tail /store/logs/access.log'
+ssh polina 'cd ~/python/velvet/ && docker compose exec nginx tail /store/logs/error.log'
 ssh polina 'sed -i "s/xxx/xxx/" ~/python/velvet/store/html/articles/57.html'
 
 curl cheat.sh/python

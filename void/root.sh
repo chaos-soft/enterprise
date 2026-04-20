@@ -10,5 +10,6 @@ rm /var/service/sshd
 
 ln -s /etc/sv/docker /var/service/
 ln -s /etc/sv/lact /var/service/
+ln -s /etc/sv/lightdm /var/service/
 ln -s /etc/sv/zramen /var/service/
 ln -s /home/chaos/.polina_backup /root/.polina_backup

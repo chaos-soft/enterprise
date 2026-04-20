@@ -25,7 +25,7 @@
     lightyellow:     #ffa75d;
     //
     // Blue
-    blue:      #5e81ac;
+    blue:      #81a1c1;
     lightblue:     #87ceeb;
     //
     // Magenta
@@ -44,12 +44,13 @@
     highlight:     bold #ffffff;
 }
 window {
-    height:   100%;
-    width: 700px;
-    location: center;
-    anchor:   center;
-    border:  0px 0px 0px 0px;
+    height:   940px;
+    width: 540px;
+    location: south;
+    anchor:   south;
     text-color: @lightwhite;
+    border-color: @lightblack;
+    border: 2px;
 }
 mode-switcher {
     border: 2px 0px 0px 0px;

@@ -24,11 +24,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, widget, qtile
+from pathlib import Path
+import subprocess
+
+from libqtile import bar, layout, widget, qtile, hook
 from libqtile.backend.wayland import InputConfig
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from pathlib import Path
+
+COLORS = ['#d8dee9', '#252a33', '#3b4252']
+HOME = Path.home()
+
+
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.call(f'{HOME}/Documents/enterprise/scripts/autostart.sh')
 
 
 @lazy.function
@@ -73,9 +83,6 @@ def move_window_right(qtile):
     bar.draw()
 
 
-COLORS = ['#d8dee9', '#252a33', '#3b4252']
-HOME = Path.home()
-
 mod = "mod4"
 terminal = 'xfce4-terminal -e ranger'
 
@@ -95,7 +102,7 @@ keys = [
     Key([], "insert", lazy.spawn("sh -c 'sleep 0.1 && xdotool key --delay 100 space Ctrl+Left space'")),
     Key([], "print", lazy.spawn("sh -c 'xfce4-screenshooter -f -s ~/Pictures/$(date +%Y%m%d-%H%M%S).png'")),
     Key([mod, "shift"], "c", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "shift"], "e", lazy.spawn('xfce4-session-logout')),
+    Key([mod, "shift"], "e", lazy.shutdown()),
     Key([mod, "shift"], "left", move_window_left),
     Key([mod, "shift"], "right", move_window_right),
     Key([mod, "shift"], "space", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
