@@ -9,7 +9,7 @@
     "open_tabs_after_current": false,
     "preview_on_click": false,
     "remember_workspace": false,
-    "rulers": [119],
+    "rulers": [88],
     "show_definitions": false,
     "show_encoding": true,
     "theme": "Default Dark.sublime-theme",

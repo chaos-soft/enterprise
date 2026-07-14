@@ -9,15 +9,19 @@ list=(
     *gdm*
     *gnome*
     *luanti*
+    *lxappearance*
     *minetest*
     *mousepad*
     *nexus*
     *parole*
     *proton*
     *qtile*
+    *qtractor*
     *ryubing*
     *ryujinx*
+    *ssr*
     *steam*
+    *sublime-text*
     *umu*
     *vinagre*
     *vlc*

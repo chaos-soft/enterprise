@@ -5,9 +5,9 @@ MangoHud
 MangoHud-32bit
 Vulkan-Tools
 android-tools
+ansible
 black
 blender
-breeze-cursors
 btop
 cage
 caja
@@ -15,6 +15,7 @@ calf
 certbot
 cpupower
 curl
+dex
 docker
 docker-buildx
 docker-compose
@@ -41,7 +42,9 @@ imwheel
 inkscape
 jq
 libjack-pipewire
-linux6.18
+linux-mainline
+linux-mainline-headers
+lm_sensors
 lsp-plugins
 lxappearance
 mc
@@ -60,8 +63,10 @@ python3-flake8
 python3-mypy
 python3-yaml
 ranger
+redsocks
 rsync
-ssr
+snitch
+sshpass
 steam
 sublime-text4
 telegram-desktop
@@ -78,6 +83,7 @@ xfce4-genmon-plugin
 xfce4-screenshooter
 yad
 zramen
+zstd
 
 Carla
 qt5ct

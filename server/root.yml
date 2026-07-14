@@ -1,8 +1,10 @@
--
-  gather_facts: false
+- gather_facts: false
   hosts: master
   remote_user: root
   tasks:
+
+  - name: Ping
+    ansible.builtin.ping:
 
   - name: Обновление
     ansible.builtin.apt:
@@ -14,17 +16,17 @@
     ansible.builtin.apt:
       install_recommends: false
       pkg:
-      - ca-certificates
-      - certbot
-      - curl
-      - gpg
-      - htop
-      - mc
-      - python3-apt
-      - python3-venv
-      - python3-yaml
-      - rsync
-      - ufw
+        - ca-certificates
+        - certbot
+        - curl
+        - gpg
+        - htop
+        - mc
+        - python3-apt
+        - python3-venv
+        - python3-yaml
+        - rsync
+        - ufw
 
   - name: Docker-ключ
     ansible.builtin.apt_key:
@@ -40,11 +42,11 @@
       state: latest
       update_cache: true
       pkg:
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-ce
-      - docker-ce-cli
-      - docker-compose-plugin
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-ce
+        - docker-ce-cli
+        - docker-compose-plugin
 
   - name: Запуск Docker
     ansible.builtin.service:
@@ -65,26 +67,21 @@
       policy: allow
       state: enabled
 
-  - name: Настройка UFW. 80
+  - name: Настройка UFW
     community.general.ufw:
-      port: "80"
+      port: '{{ item }}'
       proto: tcp
       rule: allow
+    loop:
+      - "1935"
+      - "22"
+      - "443"
+      - "80"
 
-  - name: Настройка UFW. 443
-    community.general.ufw:
-      port: "443"
-      proto: tcp
-      rule: allow
+  - name: Remove dependencies that are no longer required and purge their configuration files
+    ansible.builtin.apt:
+      autoremove: yes
+      purge: true
 
-  - name: Настройка UFW. 1935
-    community.general.ufw:
-      port: "1935"
-      proto: tcp
-      rule: allow
-
-  - name: Настройка UFW. SSH
-    community.general.ufw:
-      port: "22"
-      proto: tcp
-      rule: allow
+  - name: Unconditionally reboot the machine with all defaults
+    ansible.builtin.reboot:

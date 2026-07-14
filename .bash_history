@@ -64,7 +64,7 @@ fstrim --fstab -v
 npm install standard
 vkpurge rm all
 xbps-install $(cat /home/chaos/Documents/enterprise/void/install)
-xbps-install $(cat /home/chaos/Documents/enterprise/void/multilib\ nonfree)
+xbps-install $(cat /home/chaos/Documents/enterprise/void/multilib_nonfree)
 xbps-install -Su
 xbps-query -s gamemode
 xbps-reconfigure -f glibc-locales
@@ -75,19 +75,21 @@ xbps-remove -oO
 dc -f dc.nginx.yml up
 dc exec -T db mysql -uroot -proot velvet < sql
 dc exec -T db mysqldump -uroot -proot --skip-extended-insert velvet blog_article bookmarks_bookmark bookmarks_category finance_product > sql
+dc exec magazinna python manage.py test accounts articles common products
 dc exec velvet coverage report -m
-dc exec velvet coverage run --source='.' manage.py test blog bookmarks
-dc exec velvet python manage.py dumpdata blog bookmarks finance --indent 4 -o /backup/b.json && sudo chown -R $USER:$USER backup/ store/
+dc exec velvet coverage run --source='.' manage.py test accounts articles common products
+dc exec velvet python manage.py dumpdata articles bookmarks finance --indent 4 -o /backup/v.json && sudo chown -R $USER:$USER .
 dc exec velvet python manage.py dumpdata blog.Article --indent 4 --pks 124
 dc exec velvet python manage.py loaddata /backup/backup.json
 dc restart velvet
 docker build -t miranda:20240328 .
 docker builder prune -f
 docker exec -it vv_velvet_1 bash
-docker images && docker network ls && docker ps -a && docker volume list
+docker images --all && docker network ls && docker ps -a && docker volume list
 docker load -i miranda.tar.gz
 docker save miranda | gzip > miranda.tar.gz
 docker system df
+jq --indent 2 'del(.[].fields.content_backup)' backup/v.json > backup/vv.json
 
 apt autoremove --purge
 apt update && apt upgrade
@@ -99,5 +101,17 @@ ssh polina 'cd ~/python/velvet/ && docker compose -f docker-compose.yml -f docke
 ssh polina 'cd ~/python/velvet/ && docker compose exec nginx tail /store/logs/access.log'
 ssh polina 'cd ~/python/velvet/ && docker compose exec nginx tail /store/logs/error.log'
 ssh polina 'sed -i "s/xxx/xxx/" ~/python/velvet/store/html/articles/57.html'
+
+paccache -rk1
+paccache -ruk0
+pacman -S pipewire-jack
+
+sqlite3 permissions.sqlite
+SELECT * FROM moz_hosts;
+SELECT * FROM moz_perms ORDER BY type;
+SELECT * FROM moz_perms WHERE type IN ('autoplay-media', 'cookie', 'trackingprotection', 'microphone') ORDER BY type;
+DELETE FROM moz_perms WHERE type NOT IN ('autoplay-media', 'cookie', 'trackingprotection', 'microphone');
+DELETE FROM moz_perms WHERE id IN (84);
+.save ./p.sqlite
 
 curl cheat.sh/python

@@ -1,0 +1,9 @@
+master:
+  hosts:
+    cachyos:
+      ansible_connection: local
+      ansible_host: localhost
+      ansible_password: qqqqqq
+      ansible_port: 5555
+      ansible_python_interpreter: /usr/bin/python3
+      host_key_checking: false

@@ -1,8 +1,10 @@
 function FindProxyForURL (url, host) {
   if (
+    host === 'ayakamods.com' ||
     host === 'docs.godotengine.org' ||
     host === 'fitgirl-repacks.site' ||
     host === 'fuskator.com' ||
+    host === 'languagetool.org' ||
     host === 'phun.org' ||
     host === 'pornxp.com' ||
     host === 'rutracker.org' ||
@@ -25,13 +27,18 @@ function FindProxyForURL (url, host) {
     shExpMatch(host, '*.ggpht.com') ||
     shExpMatch(host, '*.googlevideo.com') ||
     shExpMatch(host, '*.intporn.com') ||
+    shExpMatch(host, '*.languagetool.org') ||
+    shExpMatch(host, '*.phncdn.com') ||
     shExpMatch(host, '*.pornxp.cc') ||
     shExpMatch(host, '*.rutracker.cc') ||
+    shExpMatch(host, '*.sb-cd.com') ||
     shExpMatch(host, '*.spankbang.com') ||
     shExpMatch(host, '*.wixmp.com') ||
     shExpMatch(host, '*.xhamster.com') ||
+    shExpMatch(host, '*.xhcdn.com') ||
     shExpMatch(host, '*.xvideos-cdn.com') ||
     shExpMatch(host, '*.youtube.com') ||
+
     shExpMatch(host, '*.ytimg.com')
   ) {
     return 'SOCKS5 127.0.0.1:9150'

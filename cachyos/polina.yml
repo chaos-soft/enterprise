@@ -9,7 +9,6 @@
     alias cl='clear'
     alias dc='docker compose'
     alias fh='find . -maxdepth 1 -exec stat -c "%n %y" {} + | grep -E --color " (05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23):"'
-    alias fhtc='find . -maxdepth 1 -exec stat -c "%n %w" {} + | grep -E --color " (05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23):"'
     alias g='geany'
     alias gd='clear; git diff --word-diff=color'
     alias gdu='clear; git diff --word-diff=color --unified=0'
@@ -19,52 +18,18 @@
     alias lstc='ls -la --time-style=long-iso --time=creation'
     alias nrb='npm run build'
     alias nrd='npm run dev'
-    alias pb='polina.py ~/Documents/enterprise/void/polina.yml backup'
-    alias pcl='polina.py ~/Documents/enterprise/void/polina.yml check_lines'
-    alias pd='polina.py ~/Documents/enterprise/void/polina.yml desktop'
-    alias pr='polina.py ~/Documents/enterprise/void/polina.yml rebuild'
-    alias s='subl4'
-    export PATH=~/Documents/python/tools:~/node_modules/.bin:$PATH
+    alias pb='polina.py ~/Documents/enterprise/cachyos/polina.yml backup'
+    alias pcl='polina.py ~/Documents/enterprise/cachyos/polina.yml check_lines'
+    alias pi='pacman -Qi'
+    alias pr='polina.py ~/Documents/enterprise/cachyos/polina.yml rebuild'
+    export PATH=~/Documents/python/tools:$PATH
 
 /home/chaos/.config/autostart/autostart.desktop:
   append: |
     [Desktop Entry]
-    Exec=/home/chaos/Documents/enterprise/void/autostart.sh
+    Exec=/home/chaos/Documents/enterprise/cachyos/autostart.sh
     Name=autostart
     Type=Application
-
-/home/chaos/.config/duckstation/settings.ini:
-  replace_old: |
-    ConfirmPowerOff = true
-    Force4_3For24Bit = false
-    LoadSelectedSaveState = Keyboard/F1
-    Multisamples = 1
-    PGXPEnable = false
-    ResolutionScale = 1
-    SaveSelectedSaveState = Keyboard/F2
-    SaveStateOnExit = true
-    Scaling = BilinearSmooth
-    Screenshot = Keyboard/F10
-    SelectNextSaveStateSlot = Keyboard/F4
-    SelectPreviousSaveStateSlot = Keyboard/F3
-    StartFullscreen = false
-    ToggleFullscreen = Keyboard/F11
-
-  replace_new: |
-    ConfirmPowerOff = false
-    Force4_3For24Bit = true
-    LoadSelectedSaveState = Keyboard/F3
-    Multisamples = 4
-    PGXPEnable = true
-    ResolutionScale = 5
-    SaveSelectedSaveState = Keyboard/F1
-    SaveStateOnExit = false
-    Scaling = Nearest
-    # Screenshot = Keyboard/F10
-    SelectNextSaveStateSlot = Keyboard/F12
-    SelectPreviousSaveStateSlot = Keyboard/F11
-    StartFullscreen = true
-    # ToggleFullscreen = Keyboard/F11
 
 /home/chaos/.config/geany/filedefs/filetypes.common:
   replace_old: "#caret_width=1"
@@ -255,119 +220,6 @@
     bindsym Ctrl+q kill
     status_command while ~/Documents/enterprise/scripts/status_command.sh; do sleep 1; done
 
-/home/chaos/.config/niri/config.kdl:
-  append: |
-    prefer-no-csd
-    spawn-at-startup "~/Documents/enterprise/scripts/autostart.sh"
-    spawn-sh-at-startup "swaybg -i '/home/chaos/Pictures/20210420-015850.png'"
-    window-rule { scroll-factor 3; }
-
-    cursor {
-      hide-when-typing
-      xcursor-size 24
-      xcursor-theme "$cursor"
-    }
-
-    gestures {
-      hot-corners { off; }
-    }
-
-    layer-rule {
-      match namespace="^wallpaper$"
-      place-within-backdrop true
-    }
-
-    overview {
-      workspace-shadow { off; }
-      zoom 1
-    }
-
-  insert_after:
-    "        xkb {\n": |
-      layout "us,ru"
-      options "grp:caps_toggle,grp_led:scroll"
-    "    focus-ring {\n": |
-      off
-    "    keyboard {\n": |
-      repeat-delay 200
-      repeat-rate 25
-    "    mouse {\n": |
-      accel-profile "flat"
-      accel-speed 0.5
-    "binds {\n": |
-      Ctrl+1   { spawn "~/Documents/enterprise/scripts/rofi.py"; }
-      Ctrl+2   { spawn-sh "rofi -show drun -matching prefix"; }
-      Ctrl+3   { spawn "~/Documents/enterprise/scripts/rofi_ds3.py"; }
-      Ctrl+F10 { spawn-sh "amixer -q set Capture toggle"; }
-      F10      { spawn-sh "amixer -q set Master toggle"; }
-      Mod+A    { spawn-sh "OBS_VKCAPTURE=1 ~/tmp/ariel/ariel.x86_64"; }
-    "layout {\n": |
-      background-color "transparent"
-
-  replace_old: |
-    // focus-follows-mouse max-scroll-amount="0%"
-    // skip-at-startup
-    Mod+Down  { focus-window-down; }
-    Mod+End  { focus-column-last; }
-    Mod+Home { focus-column-first; }
-    Mod+Left  { focus-column-left; }
-    Mod+O
-    Mod+Q
-    Mod+R {
-    Mod+Right { focus-column-right; }
-    Mod+Shift+Down  { focus-monitor-down; }
-    Mod+Shift+F
-    Mod+Shift+Left  { focus-monitor-left; }
-    Mod+Shift+Right { focus-monitor-right; }
-    Mod+Shift+Up    { focus-monitor-up; }
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+Up    { focus-window-up; }
-    Mod+V
-    Print { screenshot; }
-    active-color "#7fc8ff"
-    default-column-width { proportion 0.5; }
-    gaps 16
-    proportion 0.66667
-    screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1
-
-    Alt+Print { screenshot-window; }
-    Ctrl+Print { screenshot-screen; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+F { maximize-column; }
-    numlock
-    proportion 0.33333
-    spawn-at-startup "waybar"
-
-  replace_new: |
-    focus-follows-mouse max-scroll-amount="0%"
-    skip-at-startup
-    Mod+Down  { spawn-sh "$nma focus-workspace-down; $eww_update"; }
-    Mod+End  { spawn-sh "$nma focus-column-last; $eww_update"; }
-    Mod+Home { spawn-sh "$nma focus-column-first; $eww_update"; }
-    Mod+Left  { spawn-sh "$nma focus-column-left; $eww_update"; }
-    Insert
-    Ctrl+Q
-    Mod+Slash {
-    Mod+Right { spawn-sh "$nma focus-column-right; $eww_update"; }
-    Mod+Shift+Down  { spawn-sh "$nma move-column-to-workspace-down; $eww_update"; }
-    Mod+F
-    Mod+Shift+Left  { spawn-sh "$nma move-column-left; $eww_update"; }
-    Mod+Shift+Right { spawn-sh "$nma move-column-right; $eww_update"; }
-    Mod+Shift+Up    { spawn-sh "$nma move-column-to-workspace-up; $eww_update"; }
-    Mod+Return { spawn-sh "xfce4-terminal -e ranger"; }
-    Mod+Up    { spawn-sh "$nma focus-workspace-up; $eww_update"; }
-    Mod+Shift+Space
-    Print { screenshot-screen; }
-    active-color "#81a1c1"
-    default-column-width { proportion 1.0; }
-    gaps 0
-    proportion 1.0
-    screenshot-path "~/Pictures/%Y%m%d-%H%M%S.png"
-    amixer -q set Master toggle
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%
-
 /home/chaos/.config/picom.conf:
   append: |
     backend = "egl";
@@ -407,10 +259,6 @@
     None, Down, Button5, 3
     None, Up, Button4, 3
 
-/home/chaos/.nanorc:
-  append: |
-    include /usr/share/nano/*.nanorc
-
 /mnt/larka/games/tmp/mh:
   append: |
     core_load
@@ -420,7 +268,7 @@
     cpu_power
     cpu_temp
     cpu_text = 3700 pro
-    fps_limit = 60,0,15,120
+    fps_limit = 0,60,15,120
     gl_vsync = 0
     gpu_core_clock
     gpu_junction_temp
@@ -432,7 +280,7 @@
     legacy_layout = false
     ram
     swap
-    vsync=1
+    vulkan_present_mode=mailbox
     time_format = %F %T
     time_no_label
     toggle_fps_limit = F9
@@ -449,112 +297,22 @@
     vulkan_driver
     wine
     winesync
-    custom_text = Void Linux
+    custom_text = CachyOS Linux
 
 /mnt/larka/games/tmp/vkBasalt.conf:
   replace_old: toggleKey = Home
   replace_new: toggleKey = F7
 
-desktop_files:
-  audio.sh: Exec=sh -c "~/Documents/enterprise/scripts/audio.sh"
-  blender: Exec=sh -c "blender --python ~/Documents/python/2b/vse_generator.py"
-  cinelerra: Exec=sh -c "BC_FONT_SCALE=1.02 XCURSOR_THEME=Adwaita ~/Downloads/cinelerra/AppRun"
-  duckstation: Exec=sh -c "$mangohud $fa ~/Downloads/DuckStation-x64.AppImage"
-  eden: Exec=sh -c "$mangohud $fa ~/Downloads/Eden-Linux-v0.2.0-rc2-amd64-gcc-standard.AppImage"
-  freetube: Exec=sh -c "~/Downloads/freetube.AppImage"
-  picom qdre pkill: Exec=sh -c "pkill picom ; pkill qdre-compositor"
-  scale 2k: Exec=sh -c "xrandr --output HDMI-A-0 --panning 1920x1080 --scale-from 1920x1080 && $xgwsf 1 && $xgcts 24"
-  scale 4k: Exec=sh -c "xrandr --output HDMI-A-0 --panning 3840x2160 --scale-from 3840x2160 && $xgwsf 2 && $xgcts 48"
-  steam nn: Exec=sh -c "$mangohud $fc mangohud steam -console"
-  steam: Exec=sh -c "$mangohud $fb mangohud steam -console"
-  telegram: Exec=sh -c "$proxy Telegram"
-  timer: Exec=sh -c "touch -m ~/tmp/tzj"
-  waterfox: Exec=sh -c "~/Downloads/waterfox/waterfox"
-  yad: Exec=sh -c "$proxy yad --html --browser --file-op --uri='https://goodgame.ru/player?22759'"
-
-  caja /mnt: Exec=caja --no-desktop /mnt
-  caja: Exec=caja --no-desktop
-  gamma 1.2: Exec=xrandr --output HDMI-A-0 --gamma 1.2:1.2:1.2
-  gamma 1: Exec=xrandr --output HDMI-A-0 --gamma 1:1:1
-  m5l: Exec=xdotool type m5lNaA32B0SqnaPe2NjRS7r4VvBzoNVOemZ08oc2gzlHnU8r24ESMf1DZkvQ
-  nautilus: Exec=nautilus "/mnt/xxx1/memory card/загрузки/видео" "/mnt/xxx2/memory card/загрузки/видео"
-  qdre: Exec=obs-gamecapture qdre-compositor
-
-  poweroff: Exec=loginctl poweroff
-  reboot: Exec=loginctl reboot
-  suspend: Exec=loginctl suspend
-
-  mw: Exec=sh -c "MANGOHUD_CONFIGFILE=/mnt/larka/games/tmp/mh $fa mangohud openmw"
-
-  cut.sh: |
-    Exec=sh -c "~/Documents/enterprise/scripts/cut.sh"
-    Terminal=true
-  opencode qwen3-coder:30b: |
-    Exec=bash -c "source ~/.bashrc && $fd ollama launch opencode --model qwen3-coder:30b -- ~/opencode"
-    Terminal=true
-  ssh polina: |
-    Exec=ssh -D 0.0.0.0:9150 polina
-    Terminal=true
-
-  drakensang: |
-    Exec=sh -c "$mangohud $game $fc $umu drakensang.exe"
-    Path=/mnt/larka/games/games/drakensang
-    Terminal=true
-  ev: |
-    Exec=sh -c "$mangohud $game $fc $umu 'EBOLA VILLAGE.exe'"
-    Path=/mnt/larka/games/games/EBOLA VILLAGE
-    Terminal=true
-  gta4: |
-    Exec=sh -c "$d3d9 $mangohud $game $fc $umu PlayGTAIV.exe"
-    Path=/mnt/larka/games/games/GTAIV
-    Terminal=true
-  h3: |
-    Exec=sh -c "$mangohud $game $fc $umu SteamGame.exe"
-    Path=/mnt/larka/games/games/Haydee 3
-    Terminal=true
-  hf2: |
-    Exec=sh -c "$mangohud $game $fc $umu HouseFlipper2.exe"
-    Path=/mnt/larka/games/games/House Flipper 2
-    Terminal=true
-  install: |
-    Exec=sh -c "$mangohud $game $fc $umu '/mnt/alisa/tmp/Persona 5 Royal [FitGirl PC Repack]/setup.exe'"
-    Terminal=true
-  p5r: |
-    Exec=sh -c "WINEDLLOVERRIDES=steamclient64.dll,steam_api64.dll=n PROTON_DISABLE_LSTEAMCLIENT=1 $mangohud $game $fc $umu P5R.exe"
-    Path=/mnt/larka/games/games/Persona 5 Royal
-    Terminal=true
-  re8: |
-    Exec=sh -c "$mangohud $game $fc $umu re8.exe"
-    Path=/mnt/larka/games/games/Resident Evil - Village
-    Terminal=true
-  trx2: |
-    Exec=sh -c "$mangohud $game $fc $umu tomb456.exe -nolegal"
-    Path=/mnt/larka/games/games/Tomb Raider IV-VI Remastered
-    Terminal=true
-
 variables:
   $cursor: Breeze_Contrast
-  $d3d9: WINEDLLOVERRIDES=d3d9=n
-  $eww_update: eww update windows=\"$(~/Documents/enterprise/scripts/niri_windows.py)\"
-  $fa: firejail --noprofile --net=none
-  $fb: firejail --noprofile --caps.drop=all --nodbus --private=/mnt/larka/games
-  $fc: firejail --noprofile --caps.drop=all --nodbus --private=/mnt/larka/games --net=none
-  $fd: firejail --noprofile --private=~/tmp/home
-  $game: GAMEID=0 PROTONPATH=~/.local/share/Steam/compatibilitytools.d/GE-Proton10-34 WINEPREFIX=~/pfx/20260526
-  $mangohud: MANGOHUD=1 ENABLE_VKBASALT=1
-  $nma: niri msg action
-  $proxy: http_proxy=socks5://127.0.0.1:9150
-  $umu: ~/tmp/umu/umu-run
-  $xgcts: xfconf-query -n -c xsettings -p /Gtk/CursorThemeSize -t int -s
-  $xgwsf: xfconf-query -n -c xsettings -p /Gdk/WindowScalingFactor -t int -s
 
   $i3: |
     bindsym $mod+Next            workspace next
     bindsym $mod+Prior           workspace prev
     bindsym $mod+a               exec --no-startup-id OBS_VKCAPTURE=1 ~/tmp/ariel/ariel.x86_64
     bindsym Control+Tab          focus right
-    bindsym Ctrl+1               exec --no-startup-id rofi -show drun -disable-history -matching prefix
-    bindsym Ctrl+2               exec --no-startup-id xfce4-appfinder
+    bindsym Ctrl+1               exec --no-startup-id ~/Documents/enterprise/cachyos/rofi.py
+    bindsym Ctrl+2               exec --no-startup-id rofi -show drun -disable-history -matching prefix
     bindsym Ctrl+3               exec --no-startup-id ~/Documents/enterprise/scripts/rofi_ds3.py
     bindsym Ctrl+F10             exec --no-startup-id amixer -q set Capture toggle && $refresh_i3status
     bindsym F10                  exec --no-startup-id amixer -q set Master toggle && $refresh_i3status
@@ -562,12 +320,12 @@ variables:
     bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && $refresh_i3status
     bindsym XF86AudioMute        exec --no-startup-id amixer -q set Master toggle && $refresh_i3status
     bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && $refresh_i3status
-    client.focused          #4c566a #4c566a #d8dee9 #ff0000 #5e81ac
+    client.focused          #4c566a #4c566a #d8dee9 #ff0000 #000000
     client.focused_inactive #000000a8 #000000a8 #d8dee9 #ff0000 #000000
     client.unfocused        #000000a8 #000000a8 #d8dee9 #ff0000 #000000
-    exec --no-startup-id ~/Documents/enterprise/void/autostart.sh
+    exec --no-startup-id ~/Documents/enterprise/cachyos/autostart.sh
     font pango:Sans 14px
-    for_window [class="^.*"] border pixel 2
+    for_window [class="^.*"] border pixel 0
     for_window [class="^.*"] title_format " %title"
     for_window [class="ariel"] floating enable
     for_window [title="Authentication required"] floating enable

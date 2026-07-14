@@ -1,0 +1,152 @@
+- gather_facts: false
+  hosts: master
+  remote_user: root
+  tasks:
+
+  - name: Ping
+    ansible.builtin.ping:
+
+  - name: Обновление
+    community.general.pacman:
+      update_cache: true
+      upgrade: true
+
+  - name: Установка пакетов
+    community.general.pacman:
+      state: present
+      name:
+        - 7zip
+        - amdgpu_top
+        - android-tools
+        - ansible
+        - breeze-cursors
+        - breeze5
+        - btop
+        - caja
+        - curl
+        - docker
+        - docker-buildx
+        - docker-compose
+        - evtest
+        - ffmpeg
+        - firejail
+        - freetube
+        - fuse2
+        - galculator
+        - gamescope
+        - geany-plugins
+        - git
+        - gitg
+        - gnome-contacts
+        - gnome-disk-utility
+        - gnome-tweaks
+        - gparted
+        - gthumb
+        - hwloc
+        - imagemagick
+        - imwheel
+        - jq
+        - lact
+        - mangohud
+        - mc
+        - mednafen
+        - mpv
+        - mypy
+        - nano
+        - nautilus
+        - nmap
+        - nodejs
+        - npm
+        - opensnitch
+        - proton-cachyos-slr
+        - python-flake8-black
+        - python-yaml
+        - ranger
+        - rofi
+        - rsync
+        - sshpass
+        - steam
+        - telegram-desktop
+        - torbrowser-launcher
+        - umu-launcher
+        - vulkan-tools
+        - waterfox-bin
+        - wiremix
+        - xfce4
+        - xfce4-screenshooter
+        - yad
+        - yt-dlp
+
+        - lib32-vulkan-radeon
+        - vulkan-radeon
+
+        - lib32-obs-vkcapture
+        - obs-studio
+        - obs-vkcapture
+
+        - calf
+        - carla
+        - lsp-plugins
+        - pipewire-jack
+        - qt5ct
+
+        - qt6ct
+        - transmission-qt
+
+        - xdotool
+        - xorg-xev
+        - xorg-xinput
+        - xorg-xrandr
+        - xorg-xset
+        - xsel
+
+  - name: Удаление пакетов
+    community.general.pacman:
+      state: absent
+      name:
+        - sqlitebrowser
+
+  - name: Модификация пользователя chaos
+    ansible.builtin.user:
+      comment: chaos
+      groups: chaos,docker,wheel
+      name: chaos
+      shell: /bin/bash
+
+  - name: Выключение сервисов
+    ansible.builtin.systemd_service:
+      enabled: false
+      name: '{{ item }}'
+      state: stopped
+    loop:
+      - bluetooth
+      - sshd
+      - tor
+      - ufw
+
+  - name: Включение сервисов
+    ansible.builtin.systemd_service:
+      enabled: true
+      name: '{{ item }}'
+      state: started
+    loop:
+      - docker
+      - lactd
+
+  - name: Создание каталогов в /mnt
+    ansible.builtin.file:
+      mode: '0777'
+      path: '/mnt/{{ item }}'
+      state: directory
+    loop:
+      - alisa
+      - jill
+      - larka
+      - xxx1
+      - xxx2
+
+  - name: Комманды
+    ansible.builtin.command: '{{ item }}'
+    loop:
+      - sh -c "setcap 'CAP_SYS_NICE=eip' $(which gamescope)"
+      - systemd-hwdb update

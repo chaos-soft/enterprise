@@ -1,0 +1,30 @@
+- gather_facts: false
+  hosts: master
+  remote_user: chaos
+  tasks:
+
+  - name: Ping
+    ansible.builtin.ping:
+
+  - name: Копирование
+    ansible.posix.synchronize:
+      src: '{{ item }}'
+      dest: ~/
+      delete: true
+      rsync_opts:
+        - "--exclude=OVMF_VARS.fd"
+        - "--exclude=known_hosts"
+        - "--exclude=python/2b"
+        - "--exclude=python/ariel"
+        - "--exclude=tzj"
+        - "--exclude=waterfox"
+    loop:
+      - ~/.polina_backup
+      - ~/.ssh
+      - ~/Documents
+      - ~/Downloads
+      - ~/Pictures
+      - ~/Public
+      - ~/Templates
+      - ~/Videos
+      - ~/tmp

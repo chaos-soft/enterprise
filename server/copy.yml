@@ -1,89 +1,34 @@
--
-  gather_facts: false
+- gather_facts: false
   hosts: master
   remote_user: xxx
   tasks:
 
-  - name: Удаление каталога python
+  - name: Ping
+    ansible.builtin.ping:
+
+  - name: Создание каталогов
     ansible.builtin.file:
-      path: ~/python
-      state: absent
+      mode: '0755'
+      path: '{{ item }}'
+      state: directory
+    loop:
+      - ~/python
 
-  - name: Удаление каталога server
-    ansible.builtin.file:
-      path: ~/server
-      state: absent
-
-  - name: Создание каталога python
-    ansible.builtin.command: mkdir -p ~/python
-
-  - name: Копирование каталога miranda
+  - name: Копирование
     ansible.posix.synchronize:
-      src: ~/Documents/python/miranda
+      src: '{{ item }}'
       dest: ~/python/
       delete: true
       rsync_opts:
-      - "--exclude=.git"
-      - "--exclude=miranda.egg-info"
-      - "--exclude=miranda/miranda/"
+        - "--exclude=.git"
+        - "--exclude=miranda.egg-info"
+        - "--exclude=miranda/miranda/"
+    loop:
+      - ~/Documents/python/miranda
+      - ~/Documents/python/tools
 
   - name: Копирование каталога server
     ansible.posix.synchronize:
       src: ~/Documents/enterprise/server
       dest: ~/
       delete: true
-
-  - name: Копирование каталога tools
-    ansible.posix.synchronize:
-      src: ~/Documents/python/tools
-      dest: ~/python/
-      delete: true
-      rsync_opts:
-      - "--exclude=.git"
-
-  - name: Копирование каталога magazinna
-    ansible.posix.synchronize:
-      src: ~/Documents/python/magazinna
-      dest: ~/python/
-      delete: true
-      rsync_opts:
-      - "--exclude=.git"
-      - "--exclude=app/templates/"
-      - "--exclude=store/images/articles/"
-      - "--exclude=store/images/bookmarks/"
-      - "--exclude=store/images/products/"
-      - "--exclude=store/images/thumbnails/articles/"
-      - "--exclude=store/images/thumbnails/products/"
-
-  - name: Копирование статичной версии Miranda
-    ansible.posix.synchronize:
-      src: ~/Documents/python/miranda-react/dist/
-      dest: ~/python/magazinna/store/miranda/
-      delete: true
-
-  - name: Pull postgres:17.9
-    community.docker.docker_image_pull:
-      name: postgres:17.9
-      platform: amd64
-
-  - name: Pull python:3.14.3-slim-trixie
-    community.docker.docker_image_pull:
-      name: python:3.14.3-slim-trixie
-      platform: amd64
-
-  - name: Pull alpine:3.23.3
-    community.docker.docker_image_pull:
-      name: alpine:3.23.3
-      platform: amd64
-
-  - name: Build magazinna:202604
-    community.docker.docker_image_build:
-      dockerfile: Dockerfile
-      name: magazinna:202604
-      path: ~/python/magazinna
-
-  - name: Build nginx:202604
-    community.docker.docker_image_build:
-      dockerfile: Dockerfile.nginx
-      name: nginx:202604
-      path: ~/python/magazinna

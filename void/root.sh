@@ -1,9 +1,9 @@
 #!/bin/bash
-mkdir -p /mnt/{alisa,larka,xxx1,xxx2}
+mkdir -p /mnt/{alisa,larka,polina,xxx1,xxx2}
 udevadm hwdb --update
 usermod -aG docker chaos
 xbps-reconfigure -f glibc-locales
-xbps-reconfigure -f linux6.12
+xbps-reconfigure -f linux7.0
 
 rm /var/service/lightdm
 rm /var/service/sshd

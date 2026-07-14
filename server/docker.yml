@@ -1,0 +1,26 @@
+- gather_facts: false
+  hosts: master
+  remote_user: xxx
+  tasks:
+
+  - name: Ping
+    ansible.builtin.ping:
+
+  - name: Pull
+    community.docker.docker_image_pull:
+      name: '{{ item }}'
+      platform: amd64
+    loop:
+      - postgres:17.9
+
+  - name: Build magazinna:202605
+    community.docker.docker_image_build:
+      dockerfile: Dockerfile
+      name: magazinna:202605
+      path: ~/python/velvet
+
+  - name: Build nginx:202605
+    community.docker.docker_image_build:
+      dockerfile: Dockerfile.nginx
+      name: nginx:202605
+      path: ~/python/velvet

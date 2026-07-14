@@ -8,11 +8,15 @@ firefox
 gnome-core
 grim
 iftop
+linux
+linux-headers
 linux6.14
 linux6.15
+linux6.18
 mate
 mate-applets
 qtile-wayland
+ssr
 vinagre
 vlc
 wine

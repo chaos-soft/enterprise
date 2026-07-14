@@ -6,31 +6,15 @@ rm -rf ~/.themes
 
 mkdir -p ~/.local/share/icons
 mkdir -p ~/.local/share/xfce4/terminal/colorschemes
-mkdir -p ~/.themes/xxx/xfwm4
 
 cp -rpn ~/Documents/Breeze_Contrast ~/.local/share/icons
 cp -rpn ~/Documents/fonts           ~/.local/share
 install -pDvm644 /usr/share/doc/mangohud/MangoHud.conf.example ~/.polina_backup/mnt__larka__games__tmp__mh
-install -pDvm644 ~/Documents/enterprise/eww/eww.scss           ~/.config/eww/eww.scss
-install -pDvm644 ~/Documents/enterprise/eww/eww.yuck           ~/.config/eww/eww.yuck
 install -pDvm644 ~/Documents/enterprise/firefox/user.js        ~/.waterfox/l51y1kmf.default-release/user.js
 install -pDvm644 ~/Documents/enterprise/fonts.conf             ~/.config/fontconfig/fonts.conf
 install -pDvm644 ~/Documents/enterprise/gnome/gnome-shell.css  ~/.themes/xxx/gnome-shell/gnome-shell.css
 install -pDvm644 ~/Documents/enterprise/gnome/gtk.css          ~/.config/gtk-3.0/gtk.css
 install -pDvm644 ~/Documents/permissions.sqlite                ~/.waterfox/l51y1kmf.default-release/permissions.sqlite
-touch ~/.themes/xxx/xfwm4/themerc
-
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Default\ Dark.sublime-theme       ~/.config/sublime-text/Packages/User/Default.sublime-theme
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Default\ Dark.sublime-theme       ~/.config/sublime-text/Packages/User/Default\ Dark.sublime-theme
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Default\ \(Linux\).sublime-keymap ~/.config/sublime-text/Packages/User/Default\ \(Linux\).sublime-keymap
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Mariana.sublime-color-scheme      ~/.config/sublime-text/Packages/User/Mariana.sublime-color-scheme
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Mariana.sublime-color-scheme      ~/.config/sublime-text/Packages/User/Nord.sublime-color-scheme
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Mariana.sublime-color-scheme      ~/.config/sublime-text/Packages/User/One\ Light.sublime-color-scheme
-install -pDvm644 ~/Documents/enterprise/sublime\ text/Preferences.sublime-settings      ~/.config/sublime-text/Packages/User/Preferences.sublime-settings
-install -pDvm644 ~/Documents/enterprise/sublime\ text/SublimeLinter.sublime-settings    ~/.config/sublime-text/Packages/User/SublimeLinter.sublime-settings
-install -pDvm644 ~/Documents/enterprise/sublime\ text/linter.py                         ~/.config/sublime-text/Packages/User/linter.py
-install -pDvm644 ~/Documents/enterprise/sublime\ text/ollama_replace_selection.py       ~/.config/sublime-text/Packages/User/ollama_replace_selection.py
-install -pDvm644 ~/Documents/enterprise/sublime\ text/unique_sort.py                    ~/.config/sublime-text/Packages/User/unique_sort.py
 
 curl -LJ -o ~/.local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme https://raw.githubusercontent.com/catppuccin/xfce4-terminal/refs/heads/main/themes/catppuccin-mocha.theme
 curl -LJ -o ~/.polina_backup/home__chaos__.config__gtk-4.0__gtk.css           https://raw.githubusercontent.com/lassekongo83/adw-colors/refs/heads/main/themes/adw-nord/gtk4-dark.css
@@ -44,9 +28,6 @@ dconf load / < ~/Documents/enterprise/gnome/dconf
 xfconf-query -n -c displays          -p /Notify                       -t int    -s 0
 xfconf-query -n -c keyboards         -p /Default/KeyRepeat/Delay      -t int    -s 200
 xfconf-query -n -c keyboards         -p /Default/KeyRepeat/Rate       -t int    -s 25
-xfconf-query -n -c xfce4-appfinder   -p /enable-service               -t bool   -s false
-xfconf-query -n -c xfce4-appfinder   -p /icon-view                    -t bool   -s true
-xfconf-query -n -c xfce4-appfinder   -p /text-beside-icons            -t bool   -s true
 xfconf-query -n -c xfce4-taskmanager -p /columns/column-uid           -t bool   -s true
 xfconf-query -n -c xfce4-taskmanager -p /columns/sort-id              -t int    -s 6
 xfconf-query -n -c xfce4-taskmanager -p /columns/sort-type            -t int    -s 1

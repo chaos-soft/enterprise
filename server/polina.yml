@@ -1,5 +1,5 @@
 /etc/environment:
-  append: |
+  append: ""
 
 /etc/ssh/sshd_config:
   append: |
@@ -9,8 +9,7 @@
     PrintMotd no
 
 /home/xxx/.bashrc:
-  append: |
-    $ps1
+  append: $ps1
 
 /root/.bash_history:
   append: |
@@ -20,8 +19,7 @@
     systemctl restart ssh
 
 /root/.bashrc:
-  append: |
-    $ps1
+  append: $ps1
 
 variables:
   $ps1: |

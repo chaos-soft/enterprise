@@ -1,0 +1,48 @@
+- gather_facts: false
+  hosts: master
+  remote_user: xxx
+  tasks:
+
+  - name: Ping
+    ansible.builtin.ping:
+
+  - name: Stop all services
+    ansible.builtin.command:
+      chdir: ~/python/velvet
+      cmd: docker compose -f docker-compose.yml -f docker-compose.prod.yml stop
+
+  - name: clean.sh
+    become: true
+    become_method: su
+    ansible.builtin.command:
+      chdir: /home/xxx/python/velvet
+      cmd: ./clean.sh
+
+  - name: Копирование каталога velvet
+    ansible.posix.synchronize:
+      src: ~/Documents/python/velvet
+      dest: ~/python/
+      delete: false
+      rsync_opts:
+        - "--exclude=.git/"
+        - "--exclude=__pycache__/"
+        - "--exclude=app/templates/"
+        - "--exclude=store/images/products/"
+        - "--exclude=store/images/thumbnails/articles/"
+        - "--exclude=store/images/thumbnails/products/"
+
+  - name: Копирование статичной версии Miranda
+    ansible.posix.synchronize:
+      src: ~/Documents/python/miranda-react/dist/
+      dest: ~/python/velvet/store/miranda/
+      delete: true
+
+  - name: Start all services
+    ansible.builtin.command:
+      chdir: ~/python/velvet
+      cmd: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+  - name: post.sh
+    ansible.builtin.command:
+      chdir: /home/xxx/python/velvet
+      cmd: ./post.sh

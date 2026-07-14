@@ -1,3 +1,16 @@
 [
+    { "keys": ["alt+pagedown"], "command": "swap_line_down" },
+    { "keys": ["alt+pageup"], "command": "swap_line_up" },
+    { "keys": ["ctrl+/"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+    { "keys": ["ctrl+4"], "command": "unique_sort" },
+    { "keys": ["ctrl+6"],"command": "ollama_generate" },
+    { "keys": ["ctrl+alt+u"], "command": "swap_case" },
     { "keys": ["ctrl+b"], "command": "pass" },
+    { "keys": ["ctrl+down"], "command": "move", "args": {"by": "stops", "empty_line": true, "forward": true} },
+    { "keys": ["ctrl+e"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["ctrl+k"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["ctrl+shift+down"], "command": "move", "args": {"by": "stops", "empty_line": true, "forward": true, "extend": true} },
+    { "keys": ["ctrl+shift+up"], "command": "move", "args": {"by": "stops", "empty_line": true, "forward": false, "extend": true} },
+    { "keys": ["ctrl+up"], "command": "move", "args": {"by": "stops", "empty_line": true, "forward": false} },
+    { "keys": ["f9"], "command": "sort_lines", "args": {"case_sensitive": true} },
 ]
