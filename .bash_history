@@ -1,9 +1,9 @@
-egrep --color -rI 'articles/[0-9]{1,}/[0-9]' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\r' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp $'\t' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '  ' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:alnum:]]  [[:alnum:]]' .
 grep --color -rI --exclude-dir=.git --exclude-dir=mariadb --exclude-dir=tmp '[[:blank:]]$' .
+grep --color -rI -E 'articles/[0-9]{1,}/[0-9]' .
 grep --color -rIn --text 'HDR+' --include='*.py' .
 
 find . ! -perm 644 -type f -o ! -perm 755 -type d
@@ -26,15 +26,19 @@ WINEPREFIX='/mnt/polina/games/pfx/pfx' ./wine64 winecfg
 adb install -r xxx
 adb shell pm list packages
 adb uninstall xxx
+chsh -s /bin/bash xxx
 curl -LOJ --socks5 127.0.0.1:9150 xxx
 dconf dump / > ~/tmp/dconf
 diff -qr --exclude=.git --exclude=mariadb vv vv.old
 gallery-dl -D . --no-mtime --proxy socks5://127.0.0.1:9150 xxx
 gd '/mnt/larka/tmp/игры/' <(find . -type f -exec stat -c '%n %s %y' {} + | sort -k 1 -fd)
 git clone --branch dev https://github.com/chaos-soft/enterprise.git
+git push --force
+git reset --hard e29583ecbfdc843303ae435b4f3f0b33e99d27f5
 gsettings get org.gnome.shell app-picker-layout
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
 identify -verbose ~/Downloads/181222___ho_ho_ho_by_zfirrr_dcv1sh5.jpg
+install -pDvm644 /usr/share/edk2/x64/OVMF_VARS.fd /home/chaos/tmp/OVMF_VARS.fd
 magick xxx.jpg                             -crop 2000x2000+590+1100 +repage -strip -quality 85 xxx.jpg
 magick xxx.jpg -gravity Center -rotate -90 -crop 3024x2800+0+0      +repage -strip -quality 85 xxx.jpg
 nmap -A -T4 localhost
@@ -93,7 +97,10 @@ jq --indent 2 'del(.[].fields.content_backup)' backup/v.json > backup/vv.json
 
 apt autoremove --purge
 apt update && apt upgrade
-chsh -s /bin/bash xxx
+paccache -rk1
+paccache -ruk0
+pacman -S pipewire-jack
+
 ssh polina 'cd ~/python/miranda/ && docker compose exec miranda cat /tmp/miranda.log | grep -v INFO'
 ssh polina 'cd ~/python/miranda/ && docker compose stop && docker compose rm -f'
 ssh polina 'cd ~/python/miranda/ && docker compose up -d'
@@ -102,13 +109,9 @@ ssh polina 'cd ~/python/velvet/ && docker compose exec nginx tail /store/logs/ac
 ssh polina 'cd ~/python/velvet/ && docker compose exec nginx tail /store/logs/error.log'
 ssh polina 'sed -i "s/xxx/xxx/" ~/python/velvet/store/html/articles/57.html'
 
-paccache -rk1
-paccache -ruk0
-pacman -S pipewire-jack
-
 sqlite3 permissions.sqlite
 SELECT * FROM moz_hosts;
-SELECT * FROM moz_perms ORDER BY type;
+SELECT * FROM moz_perms ORDER BY type, origin;
 SELECT * FROM moz_perms WHERE type IN ('autoplay-media', 'cookie', 'trackingprotection', 'microphone') ORDER BY type;
 DELETE FROM moz_perms WHERE type NOT IN ('autoplay-media', 'cookie', 'trackingprotection', 'microphone');
 DELETE FROM moz_perms WHERE id IN (84);
